@@ -1,7 +1,7 @@
 # Trials Fusion Statistics for Cpt. Sparklez
 
 This is statistical information about Trials Fusion series on [CaptainSparklez](https://www.youtube.com/user/CaptainSparklez) youtube channel.
-[Trials Fusion series](https://www.youtube.com/playlist?list=PLSUHnOQiYNg2fPllGpaWC2jVyUufsi8aa)
+[Trials Fusion series](https://www.youtube.com/playlist?list=PLSUHnOQiYNg2fPllGpaWC2jVyUufsi8aa).
 
 ## Launch your
 
@@ -65,7 +65,7 @@ See also the list of [contributors](https://github.com/IHarryIJumper/trials-fusi
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 ## Acknowledgments
 
