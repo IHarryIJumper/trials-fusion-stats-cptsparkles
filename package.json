@@ -1,0 +1,19 @@
+{
+  "name": "trials-fusion-stats-cptsparkles",
+  "version": "1.0.0",
+  "description": "Trials Fusion Statistics for Cpt. Sparkles",
+  "main": "/server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IHarryIJumper/trials-fusion-stats-cptsparkles.git"
+  },
+  "author": "Andrey Menshikh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IHarryIJumper/trials-fusion-stats-cptsparkles/issues"
+  },
+  "homepage": "https://github.com/IHarryIJumper/trials-fusion-stats-cptsparkles#readme"
+}
