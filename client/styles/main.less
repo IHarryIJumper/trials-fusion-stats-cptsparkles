@@ -1,0 +1,114 @@
+@import './material.min.less';
+@import '../lib/jquery-focuspoint/css/focuspoint.less';
+html,
+#__blaze-root {
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    position: relative;
+    height: 100%;
+}
+
+#main-page-target {
+    width: 100%;
+    height: 100%;
+}
+
+#main-page-container {
+    width: 100%;
+    height: 100%;
+    min-height: 510px;
+    position: relative;
+    
+    #main-page-background {
+        // background-image: url(/logo-blur.jpg);
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: absolute;
+        z-index: 0;
+        div {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            position: absolute;
+            z-index: 1;
+        }
+        img {
+            pointer-events: none;
+        }
+    }
+    #menu-container {
+        position: absolute;
+        width: 100%;
+        height: 300px;
+        // background-color: #607d8b;
+        background-color: rgba(66, 66, 66, 0.8);
+        top: 50%;
+        margin-top: -150px;
+        box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+        #menu-elements {
+            width: 640px;
+            position: absolute;
+            /* top: 60px; */
+            top: 50%;
+            left: 50%;
+            margin-top: -84px;
+            margin-left: -320px;
+            button {
+                width: 300px;
+                height: 168px;
+                margin: 0px 10px;
+                .menu-button-name {
+                    font-size: 30px;
+                    text-shadow: 1px 3px 0 rgba(66, 66, 66, 1), -1px -1px 0 rgba(66, 66, 66, 1), 1px -1px 0 rgba(66, 66, 66, 1), -1px 1px 0 rgba(66, 66, 66, 1), 1px 1px 0 rgba(66, 66, 66, 1);
+                    display: block;
+                    height: 100%;
+                    left: 0;
+                    position: absolute;
+                    top: 0;
+                    width: 100%;
+                    z-index: 0;
+                    overflow: hidden;
+                    line-height: 168px;
+                    // background-color: rgba(255, 255, 255, 0.3);
+                    background-color: rgba(66, 66, 66, 0.3);
+                    -webkit-transition: all ease-out 0.1s;
+                    -moz-transition: all ease-out 0.1s;
+                    -o-transition: all ease-out 0.1s;
+                    transition: all ease-out 0.1s;
+                }
+            }
+            button[type="season1"] {
+                background-image: url(/season1-image.jpg);
+                background-size: cover;
+                background-repeat: no-repeat;
+                color: white;
+            }
+            button[type="season2"] {
+                background-image: url(/season2-image.jpg);
+                background-size: cover;
+                background-repeat: no-repeat;
+                color: white;
+            }
+            button:hover {
+                .menu-button-name {
+                    background-color: rgba(66, 66, 66, 0);
+                }
+            }
+        }
+    }
+    #main-footer {
+        z-index: 1;
+        position: absolute;
+        width: 100%;
+        bottom: 0px;
+        .mdl-mini-footer {
+            background-color: rgba(66, 66, 66, 0.1) !important;
+            box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 0px 2px -1px rgba(0, 0, 0, 0.3);
+        }
+    }
+}
