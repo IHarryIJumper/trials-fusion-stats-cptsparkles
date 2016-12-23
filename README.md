@@ -55,7 +55,7 @@ P.S. Probably, you can just run project without build. Ops.
 * [MongoDB](https://www.mongodb.com) - Database service
 * [Mongoose](http://mongoosejs.com) - MongoDB object modeling
 * [React](https://facebook.github.io/react/) - Client side
-* [React-MDL](https://github.com/react-mdl/react-mdl) - View helper
+* [Material Design Light](https://getmdl.io/) - View helper
 
 ## Authors
 
