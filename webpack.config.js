@@ -32,10 +32,10 @@ var webpackConfig = {
     entry: {
         main: [
             __dirname + '/client/scripts/main.js'
-        ]/*,
-        mainMenu: [
-            __dirname + '/client/scripts/mainMenu.js'
-        ]*/
+        ],
+        season1: [
+            __dirname + '/client/scripts/season1.js'
+        ]
     },
     output: {
         path: path.join(__dirname, 'dist'),
