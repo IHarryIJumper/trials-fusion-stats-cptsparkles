@@ -3,7 +3,7 @@
 This is statistical information about Trials Fusion series on [CaptainSparklez](https://www.youtube.com/user/CaptainSparklez) youtube channel.
 [Trials Fusion series](https://www.youtube.com/playlist?list=PLSUHnOQiYNg2fPllGpaWC2jVyUufsi8aa).
 
-## Launch your
+## Local project launch
 
 If you want to launch service on your local machine (honestly, i don't understand why), follow that instructions.
 
