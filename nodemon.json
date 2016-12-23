@@ -1,0 +1,10 @@
+{
+  "verbose": true,
+  "ignore": [".git", "client/", "node_modules/", "public/"],
+  "execMap": {
+    "js": "babel-node --presets es2015,stage-2"
+  },
+  "watch": [
+    "server/"
+  ]
+}
