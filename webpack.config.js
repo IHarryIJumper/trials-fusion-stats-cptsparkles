@@ -42,7 +42,6 @@ var webpackConfig = {
         sourceMapFilename: "debugging/[file].map",
         filename: '[name].js'
     },
-    watch: true,
     plugins: getPlugins(),
     externals: [],
     // devtool: 'eval',
