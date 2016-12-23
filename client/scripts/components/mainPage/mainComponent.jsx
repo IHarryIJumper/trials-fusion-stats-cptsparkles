@@ -11,6 +11,21 @@ export class MainPageComponent extends React.Component {
 			_isMounted: false
 		};
 
+		this.goToSeason1 = this.goToSeason1.bind(this);
+		this.goToSeason2 = this.goToSeason2.bind(this);
+
+	}
+
+	getCurrentLocation() {
+		return window.location.protocol + "//" + window.location.host + "/";
+	}
+
+	goToSeason1() {
+		window.location = this.getCurrentLocation() + 'season1';
+	}
+
+	goToSeason2() {
+		window.location = this.getCurrentLocation() + 'season2';
 	}
 
 	componentWillMount() {
@@ -43,12 +58,12 @@ export class MainPageComponent extends React.Component {
 
 				<div id='menu-container'>
 					<div id='menu-elements'>
-						<button type="season1" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+						<button type="season1" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.goToSeason1}>
 							<div className='menu-button-name'>
 								Season 1
 							</div>
 						</button>
-						<button type="season2" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+						<button type="season2" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.goToSeason2}>
 							<div className='menu-button-name'>
 								Season 2
 							</div>
