@@ -25,6 +25,14 @@ export const routes = (app) => {
         RoutesMethods.PagesRoutes.season2Page(req, res, app);
     });
 
+    app.get('/season1data', (req, res) => {
+        RoutesMethods.DataRoutes.getSeason1Data(req, res, app);
+    });
+
+    app.get('/season2data', (req, res) => {
+        RoutesMethods.DataRoutes.getSeason2Data(req, res, app);
+    });
+
     /*app.use('*', (req, res) => {
         res.writeHead(303, {
             'Location': '/'
