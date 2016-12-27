@@ -1,6 +1,11 @@
 import React from 'react';
 import { unmountComponentAtNode } from 'react-dom';
 
+import Masonry from 'react-masonry-component';
+
+import { AppLocation } from '../helpers/appLocation.js';
+import { PageContentComponent } from './pageContent/pageContent.jsx';
+
 export class SeasonOnePageComponent extends React.Component {
 	constructor(props) {
 		super(props);
@@ -9,16 +14,14 @@ export class SeasonOnePageComponent extends React.Component {
 			_isMounted: false
 		};
 
+		this.pageContentRef;
+
 		this.exitToMainPage = this.exitToMainPage.bind(this);
 
 	}
 
-	getCurrentLocation() {
-		return window.location.protocol + "//" + window.location.host + "/";
-	}
-
 	exitToMainPage() {
-		window.location = this.getCurrentLocation();
+		AppLocation.goToPage('');
 	}
 
 	componentWillMount() {
@@ -41,7 +44,7 @@ export class SeasonOnePageComponent extends React.Component {
 			<div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 				<header className="mdl-layout__header">
 					<div className="mdl-layout__header-row">
-						<span className="mdl-layout-title">Season 1 - Trials Evolution 2</span>
+						<span className="mdl-layout-title">Season 1 - Trials Evolution</span>
 						<div className="mdl-layout-spacer"></div>
 						<nav className="mdl-navigation mdl-layout--large-screen-only">
 							<a className="mdl-navigation__link" href="">Link</a>
@@ -62,32 +65,8 @@ export class SeasonOnePageComponent extends React.Component {
 						<a className="mdl-navigation__link" onClick={this.exitToMainPage}>Exit</a>
 					</nav>
 				</div>
-				<main className="mdl-layout__content">
-					<div className="page-content">
-
-
-						<div className="demo-card-wide mdl-card mdl-shadow--2dp">
-							<div className="mdl-card__title">
-								<h2 className="mdl-card__title-text">Welcome</h2>
-							</div>
-							<div className="mdl-card__supporting-text">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    							Mauris sagittis pellentesque lacus eleifend lacinia...
-  							</div>
-							<div className="mdl-card__actions mdl-card--border">
-								<a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-									Get Started
-    							</a>
-							</div>
-							<div className="mdl-card__menu">
-								<button className="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-									<i className="material-icons">share</i>
-								</button>
-							</div>
-						</div>
-
-
-					</div>
+				<main className="mdl-layout__content content-scrollbar">
+					<PageContentComponent/>
 				</main>
 
 				<footer className="mdl-mini-footer">

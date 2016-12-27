@@ -43,13 +43,13 @@ var webpackConfig = {
         path: path.join(__dirname, 'dist'),
         sourceMapFilename: "debugging/[file].map",
         filename: '[name].js',
-        publicPath: '/scripts/'
+        publicPath: '/'
     },
     plugins: getPlugins(),
     externals: [],
-    // devtool: 'eval',
+    devtool: 'eval',
     // devtool: 'cheap-inline-module-source-map',
-    devtool: 'cheap-eval-source-map',
+    // devtool: 'cheap-eval-source-map',
     module: {
         loaders: [{
                 test: /.jsx?$/,

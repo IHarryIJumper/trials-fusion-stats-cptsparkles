@@ -1,6 +1,48 @@
 @import './imports/common.less';
-
 @import './material/material.min.less';
-
 @import './media-queries/devices.less';
 
+.content-scrollbar {
+
+	.mobile ({
+    	// overflow: hidden !important;
+	});
+}
+
+.page-content {
+	// display: inline-block;
+
+	.mobile ({
+    	padding: 0px;
+	});
+
+	.desktop ({	
+    	padding: 10px;
+	});
+
+	.masonry-grid {
+		/*.desktop ({	
+    		width: calc(~'100% / 330 * 4');
+		});*/
+	}
+
+    .statistic-card {
+        margin: 10px;
+        display: inline-block;
+
+		.mobile ({
+    		width: calc(~'100% - 20px');
+		});
+
+		/*.desktop ({	
+			width: calc(~'(100% - 60px) / 3');
+		});*/
+		
+        .card-information {
+            .card-information-row {
+				padding-top: 0px !important;
+				padding-bottom: 0px !important;
+			}
+        }
+    }
+}

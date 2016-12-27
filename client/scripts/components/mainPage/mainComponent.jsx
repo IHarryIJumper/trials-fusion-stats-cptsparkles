@@ -1,6 +1,8 @@
 import React from 'react';
 import { unmountComponentAtNode } from 'react-dom';
 
+import { AppLocation } from '../helpers/appLocation.js';
+
 import '../../../lib/jquery-focuspoint/js/jquery.focuspoint.min.js';
 
 export class MainPageComponent extends React.Component {
@@ -16,16 +18,12 @@ export class MainPageComponent extends React.Component {
 
 	}
 
-	getCurrentLocation() {
-		return window.location.protocol + "//" + window.location.host + "/";
-	}
-
 	goToSeason1() {
-		window.location = this.getCurrentLocation() + 'season1';
+		AppLocation.goToPage('season1');
 	}
 
 	goToSeason2() {
-		window.location = this.getCurrentLocation() + 'season2';
+		AppLocation.goToPage('season2');
 	}
 
 	componentWillMount() {
