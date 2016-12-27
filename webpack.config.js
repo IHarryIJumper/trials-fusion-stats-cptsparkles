@@ -4,7 +4,7 @@ var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 var getPlugins = function () {
     var plugins = [];
-    // var hotReload = new webpack.HotModuleReplacementPlugin()
+    var hotReload = new webpack.HotModuleReplacementPlugin()
     var noErrorsPlugin = new webpack.NoErrorsPlugin();
     var clearDist = new CleanWebpackPlugin(['dist'], {
       root: __dirname,
@@ -14,7 +14,7 @@ var getPlugins = function () {
 
     plugins.push(clearDist);
     plugins.push(noErrorsPlugin);
-    // plugins.push(hotReload);
+    plugins.push(hotReload);
 
     var node_env = new webpack.DefinePlugin({
         'process.env': {
@@ -31,16 +31,19 @@ var getPlugins = function () {
 var webpackConfig = {
     entry: {
         main: [
+            'webpack-hot-middleware/client',
             __dirname + '/client/scripts/main.js'
         ],
         season1: [
+            'webpack-hot-middleware/client',
             __dirname + '/client/scripts/season1.js'
         ]
     },
     output: {
         path: path.join(__dirname, 'dist'),
         sourceMapFilename: "debugging/[file].map",
-        filename: '[name].js'
+        filename: '[name].js',
+        publicPath: '/scripts/'
     },
     plugins: getPlugins(),
     externals: [],
@@ -51,21 +54,14 @@ var webpackConfig = {
         loaders: [{
                 test: /.jsx?$/,
                 include: [/client/],
-                loader: 'babel-loader',
-                exclude: [/node_modules/],
-                query: {
-                    presets: ['es2015', 'react'],
-                    compact: false
-                }
+                loaders: ['react-hot', 'babel'],
+                exclude: [/node_modules/]
             },
             {
                 test: /\.js$/,
                 include: [/client/],
                 exclude: [/node_modules/],
-                loader: 'babel-loader',
-                query: {
-                    compact: false
-                }
+                loaders: ['react-hot', 'babel']
             }, {
                 test: /\.rt/,
                 loader: "react-templates-loader"

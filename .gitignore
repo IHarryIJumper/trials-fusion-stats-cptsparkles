@@ -2,3 +2,5 @@ node_modules
 *.zip
 Procfile
 *.log
+dist/*.hot-update.js
+dist/*.hot-update.json

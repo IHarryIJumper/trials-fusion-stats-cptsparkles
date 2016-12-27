@@ -13,6 +13,19 @@ import mongoose from 'mongoose';
 
 const app = express();
 
+
+if(process.env.NODE_ENV !== 'production'){
+    const webpack = require('webpack');
+    const config =  require('../webpack.config');
+    const compiler = webpack(config);
+
+    app.use(require('webpack-dev-middleware')(compiler, {
+        publicPath: config.output.publicPath
+    }));
+
+    app.use(require('webpack-hot-middleware')(compiler));
+}
+
 /**
  * Create the express app
  */
