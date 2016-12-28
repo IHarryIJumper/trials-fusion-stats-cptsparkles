@@ -43,6 +43,7 @@
     "react-masonry-component": "^5.0.0",
     "react-mixin": "^3.0.5",
     "react-responsive": "^1.2.5",
+    "request": "^2.79.0",
     "strict-uri-encode": "^2.0.0"
   },
   "devDependencies": {
