@@ -1,4 +1,3 @@
-
 import {
 	DatabaseMethods
 } from '../../dbMethods.js';
@@ -11,7 +10,9 @@ export class DataRoutes {
 
 		DatabaseMethods.seasonOne.getData().then((response) => {
 			console.logWithTime(JSON.stringify(response));
-			res.send(response);
+			setTimeout(() => {
+				res.send(response);
+			}, 2000);
 		});
 
 	}

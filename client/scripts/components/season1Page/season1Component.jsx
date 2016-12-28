@@ -1,10 +1,12 @@
 import React from 'react';
 import { unmountComponentAtNode } from 'react-dom';
 
-import Masonry from 'react-masonry-component';
+import request from 'request';
 
 import { AppLocation } from '../helpers/appLocation.js';
+import { DataParse } from '../helpers/dataParse.js';
 import { PageContentComponent } from './pageContent/pageContent.jsx';
+import { PreloaderComponent } from './preloader/preloader.jsx';
 
 export class SeasonOnePageComponent extends React.Component {
 	constructor(props) {
@@ -12,26 +14,91 @@ export class SeasonOnePageComponent extends React.Component {
 
 		this.state = {
 			_isMounted: false,
-			preloader: true
+			preloader: true,
+			loadProgress: 0
 		};
+
+		this.progressStep = 25;
 
 		this.pageContentRef;
 
+		this.cardsStatisticData = {};
+
+		this.snackbarContainer;
+
+		this.getData = this.getData.bind(this);
+		this.parseStatisticData = this.parseStatisticData.bind(this);
+		this.pageContentRendered = this.pageContentRendered.bind(this);
+		this.setPreloaderProgress = this.setPreloaderProgress.bind(this);
 		this.exitToMainPage = this.exitToMainPage.bind(this);
 		this.renderPreloader = this.renderPreloader.bind(this);
 
+	}
+
+	getData() {
+
+		const _this = this;
+
+		this.setPreloaderProgress();
+
+		request
+			.get(AppLocation.getRequestUrl('season1data'), function (error, response, body) {
+				if (!error && response.statusCode === 200) {
+					if (body.code !== undefined) {
+						const data = { message: JSON.stringify(body) };
+						_this.snackbarContainer.MaterialSnackbar.showSnackbar(data);
+						console.log(body) // Show the HTML for the Google homepage.
+					} else {
+						_this.parseStatisticData(body);
+						_this.setPreloaderProgress();
+					}
+				}
+			});
+	}
+
+	parseStatisticData(data) {
+		this.cardsStatisticData = DataParse.cardsData(data);
+		const snackData = { message: JSON.stringify(this.cardsStatisticData) };
+		this.snackbarContainer.MaterialSnackbar.showSnackbar(snackData);
+		this.setPreloaderProgress();
+	}
+
+	pageContentRendered(rendered) {
+		if(rendered) {
+			this.setPreloaderProgress();
+		}
+	}
+
+	setPreloaderProgress() {
+		this.setState({
+			loadProgress: this.state.loadProgress + this.progressStep
+		});
+
+		if (this.state.loadProgress === 100) {
+			setTimeout(() => {
+				this.setState({
+					preloader: false
+				})
+			}, 500)
+		}
 	}
 
 	exitToMainPage() {
 		AppLocation.goToPage('');
 	}
 
+	renderPageContent() {
+		if (this.state.loadProgress >= 75) {
+			return (
+				<PageContentComponent loading={this.state.loadProgress} rendered={this.pageContentRendered} />
+			);
+		}
+	}
+
 	renderPreloader() {
 		if (this.state.preloader) {
 			return (
-				<div className="content-preloader">
-					<div id="p2" className="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
-				</div>
+				<PreloaderComponent progress={this.state.loadProgress} />
 			);
 		}
 	}
@@ -49,6 +116,45 @@ export class SeasonOnePageComponent extends React.Component {
 	}
 
 	componentDidMount() {
+		this.getData();
+		this.snackbarContainer = document.querySelector('#toast-notification');
+		/*let progress = 0;
+		setTimeout(() => {
+			progress += 20;
+			this.setState({
+				loadProgress: progress
+			})
+
+			setTimeout(() => {
+				progress += 20;
+				this.setState({
+					loadProgress: progress
+				})
+				setTimeout(() => {
+					progress += 20;
+					this.setState({
+						loadProgress: progress
+					})
+					setTimeout(() => {
+						progress += 20;
+						this.setState({
+							loadProgress: progress
+						})
+						setTimeout(() => {
+							progress += 20;
+							this.setState({
+								loadProgress: progress
+							})
+							setTimeout(() => {
+								this.setState({
+									preloader: false
+								})
+							}, 1000)
+						}, 1000)
+					}, 1000)
+				}, 1000)
+			}, 1000)
+		}, 1000)*/
 	}
 
 	render() {
@@ -78,9 +184,13 @@ export class SeasonOnePageComponent extends React.Component {
 					</nav>
 				</div>
 				<main className="mdl-layout__content content-scrollbar">
-					<PageContentComponent />
+					{this.renderPageContent()}
 					{this.renderPreloader()}
 
+					<div id="toast-notification" className="mdl-js-snackbar mdl-snackbar">
+						<div className="mdl-snackbar__text"></div>
+						<button className="mdl-snackbar__action" type="button"></button>
+					</div>
 				</main>
 
 				<footer className="mdl-mini-footer">

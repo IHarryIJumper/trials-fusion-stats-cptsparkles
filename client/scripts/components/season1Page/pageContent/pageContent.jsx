@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import Masonry from 'react-masonry-component';
 
@@ -29,6 +29,15 @@ export class PageContentComponent extends React.Component {
 	}
 
 	componentDidMount() {
+		this.props.rendered(true);
+	}
+
+	shouldComponentUpdate(nextProps, nextState) {
+		if (nextProps.loading > 75) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	render() {
@@ -45,7 +54,7 @@ export class PageContentComponent extends React.Component {
 					disableImagesLoaded={false}
 					updateOnEachImageLoad={false}>
 
-					<MainCardComponent/>
+					<MainCardComponent />
 
 				</Masonry>
 
@@ -54,3 +63,10 @@ export class PageContentComponent extends React.Component {
 		);
 	}
 }
+
+PageContentComponent.propTypes = {
+	// This component gets the task to display through a React prop.
+	// We can use propTypes to indicate it is required
+	loading: PropTypes.number.isRequired,
+	rendered: PropTypes.func.isRequired
+};
