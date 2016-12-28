@@ -11,17 +11,29 @@ export class SeasonOnePageComponent extends React.Component {
 		super(props);
 
 		this.state = {
-			_isMounted: false
+			_isMounted: false,
+			preloader: true
 		};
 
 		this.pageContentRef;
 
 		this.exitToMainPage = this.exitToMainPage.bind(this);
+		this.renderPreloader = this.renderPreloader.bind(this);
 
 	}
 
 	exitToMainPage() {
 		AppLocation.goToPage('');
+	}
+
+	renderPreloader() {
+		if (this.state.preloader) {
+			return (
+				<div className="content-preloader">
+					<div id="p2" className="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+				</div>
+			);
+		}
 	}
 
 	componentWillMount() {
@@ -67,9 +79,7 @@ export class SeasonOnePageComponent extends React.Component {
 				</div>
 				<main className="mdl-layout__content content-scrollbar">
 					<PageContentComponent />
-					<div className="content-preloader">
-						<div id="p2" className="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
-					</div>
+					{this.renderPreloader()}
 
 				</main>
 
