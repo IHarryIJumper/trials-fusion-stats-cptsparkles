@@ -1,0 +1,97 @@
+{
+  "persons": [
+    {
+      "id": 0,
+      "name": "Jordan"
+    },
+    {
+      "id": 1,
+      "name": "Nick"
+    }
+  ],
+  "maps": {
+    "easy": [
+      [
+        {
+          "personId": 0,
+          "name": "Jordan",
+          "status": 0,
+          "faults": 9
+        },
+        {
+          "personId": 1,
+          "name": "Nick",
+          "status": 1,
+          "faults": 3
+        }
+      ],
+      [
+        {
+          "personId": 0,
+          "name": "Jordan",
+          "status": 0,
+          "faults": 27
+        },
+        {
+          "personId": 1,
+          "name": "Nick",
+          "status": 1,
+          "faults": 12
+        }
+      ]
+    ],
+    "medium": [
+      [
+        {
+          "personId": 0,
+          "name": "Jordan",
+          "status": 0,
+          "faults": 21
+        },
+        {
+          "personId": 1,
+          "name": "Nick",
+          "status": 1,
+          "faults": 3
+        }
+      ],
+      [
+        {
+          "personId": 0,
+          "name": "Jordan",
+          "status": 2,
+          "faults": 6
+        },
+        {
+          "personId": 1,
+          "name": "Nick",
+          "status": 1,
+          "faults": 1
+        }
+      ]
+    ],
+    "hard": [],
+    "extreme": []
+  },
+  "final": [
+    {
+      "personId": 0,
+      "name": "Jordan",
+      "score": 12
+    },
+    {
+      "personId": 1,
+      "name": "Nick",
+      "score": 40
+    }
+  ],
+  "date": {
+    "day": 20,
+    "month": 5,
+    "year": 2013
+  },
+  "episode": {
+    "id": 1,
+    "name": "Trials Evolution w/ Nick: Uncalled-for"
+  }
+}
