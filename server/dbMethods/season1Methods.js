@@ -7,9 +7,13 @@ import _ from 'lodash';
 
 let seasonOneDataSchema = mongoose.Schema({
     _id: String,
-    episode: Number,
+    persons: Object,
     maps: Object,
-    persons: Object
+    date: Object,
+    episode: {
+        id: Number,
+        name: String
+    }
 }, {
     collection: 'seasonOneData'
 });
