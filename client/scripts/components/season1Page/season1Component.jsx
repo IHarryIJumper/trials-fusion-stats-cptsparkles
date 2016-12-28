@@ -66,7 +66,11 @@ export class SeasonOnePageComponent extends React.Component {
 					</nav>
 				</div>
 				<main className="mdl-layout__content content-scrollbar">
-					<PageContentComponent/>
+					<PageContentComponent />
+					<div className="content-preloader">
+						<div id="p2" className="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+					</div>
+
 				</main>
 
 				<footer className="mdl-mini-footer">
