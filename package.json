@@ -6,6 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production node serverDist/server.js",
     "dev": "NODE_ENV=development nodemon server/server.js --ignore client/** --exec babel-node --presets es2015,stage-2 | tee ./serverLogs.log",
+    "client": "NODE_ENV=development webpack --progress --watch",
     "build": "NODE_ENV=production webpack --progress -p --config webpack.production.config.js && babel server -d serverDist --presets es2015,stage-2",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
