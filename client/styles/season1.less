@@ -1,8 +1,6 @@
 @import './imports/common.less';
 @import './media-queries/devices.less';
-
 @import './cards/mainCard.less';
-
 .content-scrollbar {
     .mobile ( {
         // overflow: hidden !important;
@@ -48,12 +46,12 @@
     .mobile ( {
         width: calc(~'100% - 20px') !important;
         margin: 0px 10px;
-		overflow: hidden;
+        overflow: hidden;
     }
     );
     .mdl-snackbar__text {
         .mobile ( {
-			padding: 5px 2px 5px 2px !important;
+            padding: 5px 2px 5px 2px !important;
             width: calc(~'100% - 60px') !important;
             margin: 0px 10px;
         }
@@ -78,8 +76,14 @@
         /*.desktop ({	
     		width: calc(~'100% / 330 * 4');
 		});*/
-
-        padding: 10px;
+        .mobile ( {
+            padding: 0px;
+        }
+        );
+        .desktop ( {
+            padding: 10px;
+        }
+        );
     }
     .statistic-card {
         margin: 10px;
