@@ -47,6 +47,6 @@ app.use(bodyParser.urlencoded({
 
 routes(app);
 
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 7777);
 
-console.logWithTime(`Listening on http://localhost:${process.env.PORT || 8080}`);
+console.logWithTime(`Listening on http://localhost:${process.env.PORT || 7777}`);

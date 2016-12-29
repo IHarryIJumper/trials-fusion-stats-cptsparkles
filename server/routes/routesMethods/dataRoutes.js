@@ -12,7 +12,7 @@ export class DataRoutes {
 			console.logWithTime(JSON.stringify(response));
 			setTimeout(() => {
 				res.send(response);
-			}, 2000);
+			}, 500);
 		});
 
 	}

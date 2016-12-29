@@ -14,6 +14,17 @@ export class PageContentComponent extends React.Component {
 
 		this.pageContentRef;
 
+		this.renderMainCard = this.renderMainCard.bind(this);
+
+	}
+
+	renderMainCard() {
+		if (this.props.data.mainCard !== undefined) {
+
+			return (
+				<MainCardComponent data={this.props.data.mainCard} />
+			);
+		}
 	}
 
 	componentWillMount() {
@@ -54,7 +65,19 @@ export class PageContentComponent extends React.Component {
 					disableImagesLoaded={false}
 					updateOnEachImageLoad={false}>
 
-					<MainCardComponent />
+					{this.renderMainCard()}
+					{this.renderMainCard()}
+					{this.renderMainCard()}
+					{this.renderMainCard()}
+					{this.renderMainCard()}
+					{this.renderMainCard()}
+					{this.renderMainCard()}
+					{this.renderMainCard()}
+					{this.renderMainCard()}
+					{this.renderMainCard()}
+					{this.renderMainCard()}
+					{this.renderMainCard()}
+					{this.renderMainCard()}
 
 				</Masonry>
 
@@ -68,5 +91,6 @@ PageContentComponent.propTypes = {
 	// This component gets the task to display through a React prop.
 	// We can use propTypes to indicate it is required
 	loading: PropTypes.number.isRequired,
-	rendered: PropTypes.func.isRequired
+	rendered: PropTypes.func.isRequired,
+	data: PropTypes.object.isRequired
 };

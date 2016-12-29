@@ -90,7 +90,7 @@ export class SeasonOnePageComponent extends React.Component {
 	renderPageContent() {
 		if (this.state.loadProgress >= 75) {
 			return (
-				<PageContentComponent loading={this.state.loadProgress} rendered={this.pageContentRendered} />
+				<PageContentComponent loading={this.state.loadProgress} rendered={this.pageContentRendered} data={this.cardsStatisticData} />
 			);
 		}
 	}

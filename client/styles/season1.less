@@ -1,5 +1,8 @@
 @import './imports/common.less';
 @import './media-queries/devices.less';
+
+@import './cards/mainCard.less';
+
 .content-scrollbar {
     .mobile ( {
         // overflow: hidden !important;
@@ -68,13 +71,15 @@
     }
     );
     .desktop ( {
-        padding: 10px;
+        // padding: 10px;
     }
     );
     .masonry-grid {
         /*.desktop ({	
     		width: calc(~'100% / 330 * 4');
 		});*/
+
+        padding: 10px;
     }
     .statistic-card {
         margin: 10px;

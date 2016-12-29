@@ -35,6 +35,7 @@ seasonOneDataSchema.methods.getData = function () {
                 resolve(_error);
 
             } else {
+                
                 if (doc !== null) {
                     if (Array.isArray(doc)) {
                         resolve(doc);
