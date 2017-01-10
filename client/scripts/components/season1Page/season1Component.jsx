@@ -64,7 +64,7 @@ export class SeasonOnePageComponent extends React.Component {
 	}
 
 	pageContentRendered(rendered) {
-		if(rendered) {
+		if (rendered) {
 			this.setPreloaderProgress();
 		}
 	}
@@ -197,6 +197,11 @@ export class SeasonOnePageComponent extends React.Component {
 					<div className="mdl-mini-footer__left-section">
 						<div className="mdl-logo">Andrey Menshikh</div>
 						<ul className="mdl-mini-footer__link-list">
+							<li>
+								<button className="mdl-button mdl-js-button mdl-button--icon">
+									<i className="material-icons">mood</i>
+								</button>
+							</li>
 							<li><a href="https://github.com/IHarryIJumper">Github</a></li>
 							<li><a href="https://vk.com/iharryijumper">Contacts</a></li>
 							<li><a href="#">Donation</a></li>
