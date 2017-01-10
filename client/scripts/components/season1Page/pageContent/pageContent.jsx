@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import Masonry from 'react-masonry-component';
 
 import { MainCardComponent } from './statistic-cards/mainCard.jsx';
+import { LastTenCardComponent } from './statistic-cards/lastTen.jsx';
 
 export class PageContentComponent extends React.Component {
 	constructor(props) {
@@ -15,6 +16,7 @@ export class PageContentComponent extends React.Component {
 		this.pageContentRef;
 
 		this.renderMainCard = this.renderMainCard.bind(this);
+		this.renderLastTenCard = this.renderLastTenCard.bind(this);
 
 	}
 
@@ -23,6 +25,15 @@ export class PageContentComponent extends React.Component {
 
 			return (
 				<MainCardComponent data={this.props.data.mainCard} />
+			);
+		}
+	}
+
+	renderLastTenCard() {
+		if (this.props.data.lastTen !== undefined) {
+
+			return (
+				<LastTenCardComponent data={this.props.data.lastTen} />
 			);
 		}
 	}
@@ -66,18 +77,7 @@ export class PageContentComponent extends React.Component {
 					updateOnEachImageLoad={false}>
 
 					{this.renderMainCard()}
-					{this.renderMainCard()}
-					{this.renderMainCard()}
-					{this.renderMainCard()}
-					{this.renderMainCard()}
-					{this.renderMainCard()}
-					{this.renderMainCard()}
-					{this.renderMainCard()}
-					{this.renderMainCard()}
-					{this.renderMainCard()}
-					{this.renderMainCard()}
-					{this.renderMainCard()}
-					{this.renderMainCard()}
+					{this.renderLastTenCard()}
 
 				</Masonry>
 

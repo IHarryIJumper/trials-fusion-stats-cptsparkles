@@ -2,14 +2,9 @@ import _ from 'lodash';
 
 export const DataParse = {
 	cardsData: (data) => {
-		let parsedData = {
-			mainCard: {}
-		};
+		let parsedData = {};
 
-		if (Array.isArray(data)) {
-			parsedData.mainCard = DataParse.mainCardData(data);
-		} else {
-
+		if (!Array.isArray(data)) {
 			let dataUnstringify = null;
 
 			try {
@@ -20,12 +15,24 @@ export const DataParse = {
 				console.log(err);
 			}
 
-			if (Array.isArray(dataUnstringify)) {
-				parsedData.mainCard = DataParse.mainCardData(dataUnstringify);
-			} else {
+			if (!Array.isArray(dataUnstringify)) {
 				console.log('Data not array');
+				return parsedData;
+			} else {
+				data = dataUnstringify;
 			}
 		}
+
+		parsedData = DataParse.getData(data);
+
+		return parsedData;
+	},
+
+	getData: (data) => {
+		let parsedData = {};
+
+		parsedData.mainCard = DataParse.mainCardData(data);
+		parsedData.lastTen = DataParse.lastTenData(data);
 
 		return parsedData;
 	},
@@ -75,6 +82,53 @@ export const DataParse = {
 		};
 
 		return mainCardData;
+
+	},
+
+	lastTenData: (seasonData) => {
+		let lastTenCardData = {
+				wins: {}
+			},
+			lastTenEpisodes;
+		if (seasonData.length > 10) {
+			lastTenEpisodes = seasonData.slice(seasonData.length - 10);
+		} else {
+			lastTenEpisodes = seasonData;
+		}
+
+		_.each(lastTenEpisodes, (episode, episodeIndex) => {
+			let episodeWinner = {
+				score: -1
+			};
+
+			_.each(episode.final, (finalElement, finalElementIndex) => {
+				lastTenCardData.wins[finalElement.name] = 0;
+				if (episodeWinner.score < finalElement.score) {
+					episodeWinner.score = finalElement.score;
+					episodeWinner.personId = finalElement.personId;
+					episodeWinner.name = finalElement.name;
+				}
+
+			});
+
+			lastTenCardData.wins[episodeWinner.name]++;
+
+		});
+
+		let winnerData = {
+			name: '',
+			wins: -1
+		};
+		_.each(Object.keys(lastTenCardData.wins), (winner, winnerIndex) => {
+			if (lastTenCardData.wins[winner] > winnerData.wins) {
+				winnerData.name = winner;
+				winnerData.wins = lastTenCardData.wins[winner];
+			}
+		})
+
+		lastTenCardData.winner = winnerData.name;
+
+		return lastTenCardData;
 
 	}
 
