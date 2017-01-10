@@ -1,8 +1,5 @@
 import React, { PropTypes } from 'react';
 
-import moment from 'moment';
-// import * as moment from 'moment';
-
 export class LastTenCardComponent extends React.Component {
 	constructor(props) {
 		super(props);
