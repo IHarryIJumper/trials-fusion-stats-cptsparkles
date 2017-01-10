@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import Masonry from 'react-masonry-component';
 
 import { MainCardComponent } from './statistic-cards/mainCard.jsx';
+import { LastEpisodeCardComponent } from './statistic-cards/lastEpisode.jsx';
 import { LastTenCardComponent } from './statistic-cards/lastTen.jsx';
 import { EasyMapsCardComponent } from './statistic-cards/easyMaps.jsx';
 import { MediumMapsCardComponent } from './statistic-cards/mediumMaps.jsx';
@@ -19,6 +20,7 @@ export class PageContentComponent extends React.Component {
 		this.pageContentRef;
 
 		this.renderMainCard = this.renderMainCard.bind(this);
+		this.renderLastEpisodeCard = this.renderLastEpisodeCard.bind(this);
 		this.renderLastTenCard = this.renderLastTenCard.bind(this);
 		this.renderEasyMapsCard = this.renderEasyMapsCard.bind(this);
 		this.renderMediumMapsCard = this.renderMediumMapsCard.bind(this);
@@ -32,6 +34,16 @@ export class PageContentComponent extends React.Component {
 			return (
 				<MainCardComponent data={this.props.data.mainCard} />
 			);
+		}
+	}
+
+	renderLastEpisodeCard() {
+		if (this.props.data.lastEpisodeData !== undefined) {
+			if (this.props.data.lastEpisodeData) {
+				return (
+					<LastEpisodeCardComponent data={this.props.data.lastEpisodeData} />
+				);
+			}
 		}
 	}
 
@@ -113,6 +125,7 @@ export class PageContentComponent extends React.Component {
 					updateOnEachImageLoad={false}>
 
 					{this.renderMainCard()}
+					{this.renderLastEpisodeCard()}
 					{this.renderLastTenCard()}
 					{this.renderEasyMapsCard()}
 					{this.renderMediumMapsCard()}

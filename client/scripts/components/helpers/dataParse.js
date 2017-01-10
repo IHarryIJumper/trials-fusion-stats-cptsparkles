@@ -1,4 +1,7 @@
 import _ from 'lodash';
+import {
+	ObjectHelper
+} from './objectHelper.js';
 
 export const DataParse = {
 	cardsData: (data) => {
@@ -36,6 +39,7 @@ export const DataParse = {
 		parsedData.easyMaps = DataParse.easyMapsData(data);
 		parsedData.mediumMaps = DataParse.mediumMapsData(data);
 		parsedData.hardMaps = DataParse.hardMapsData(data);
+		parsedData.lastEpisodeData = DataParse.lastEpisodeData(data);
 
 		return parsedData;
 	},
@@ -525,6 +529,41 @@ export const DataParse = {
 		}
 
 		return hardMapsCardData;
+
+	},
+
+	lastEpisodeData: (seasonData) => {
+		let lastEpisodeCardData = {
+			score: {},
+			winner: ''
+		},
+		lastEpisode;
+
+		if (seasonData.length > 0) {
+			lastEpisode = seasonData[seasonData.length - 1];
+		} else {
+			return false;
+		}
+
+		_.each(lastEpisode.final, (person, personIndex) => {
+			lastEpisodeCardData.score[person.name] = person.score;
+		});
+
+		let winnerData = {
+			name: '',
+			score: -1
+		};
+
+		_.each(Object.keys(lastEpisodeCardData.score), (winner, winnerIndex) => {
+			if (lastEpisodeCardData.score[winner] > winnerData.score) {
+				winnerData.name = winner;
+				winnerData.score = lastEpisodeCardData.score[winner];
+			}
+		})
+
+		lastEpisodeCardData.winner = winnerData.name;
+
+		return lastEpisodeCardData;
 
 	}
 
