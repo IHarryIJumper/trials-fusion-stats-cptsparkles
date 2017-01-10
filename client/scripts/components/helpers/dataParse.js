@@ -34,6 +34,7 @@ export const DataParse = {
 		parsedData.mainCard = DataParse.mainCardData(data);
 		parsedData.lastTen = DataParse.lastTenData(data);
 		parsedData.easyMaps = DataParse.easyMapsData(data);
+		parsedData.mediumMaps = DataParse.mediumMapsData(data);
 
 		return parsedData;
 	},
@@ -145,7 +146,7 @@ export const DataParse = {
 			},
 			_dnfs = {},
 			_mapsPlayed = {},
-			_foundEasyMaps = false;
+			_foundMaps = false;
 
 		_.each(seasonData, (episode, episodeIndex) => {
 
@@ -162,7 +163,7 @@ export const DataParse = {
 			if (episode.maps.easy !== undefined) {
 				if (episode.maps.easy.length !== 0) {
 
-					_foundEasyMaps = true;
+					_foundMaps = true;
 
 					easyMapsCardData.maps += episode.maps.easy.length;
 
@@ -256,11 +257,142 @@ export const DataParse = {
 		easyMapsCardData.dnfs = dnfsData.name;
 		easyMapsCardData.dnfsPerEpisode = dnfsDataPerEpisode.name
 
-		if (!_foundEasyMaps) {
+		if (!_foundMaps) {
 			return false;
 		}
 
 		return easyMapsCardData;
+
+	},
+
+	mediumMapsData: (seasonData) => {
+		let mediumMapsCardData = {
+				wins: {},
+				episodes: {},
+				maps: 0,
+				dnfs: '',
+				dnfsPerEpisode: '',
+				winner: '',
+				winnerPerEpisode: ''
+			},
+			_dnfs = {},
+			_mapsPlayed = {},
+			_foundMaps = false;
+
+		_.each(seasonData, (episode, episodeIndex) => {
+
+			_.each(episode.persons, (personElement, personElementIndex) => {
+
+				if (mediumMapsCardData.episodes[personElement.name] === undefined) {
+					mediumMapsCardData.episodes[personElement.name] = 0
+				}
+
+				mediumMapsCardData.episodes[personElement.name]++;
+
+			});
+
+			if (episode.maps.medium !== undefined) {
+				if (episode.maps.medium.length !== 0) {
+
+					_foundMaps = true;
+
+					mediumMapsCardData.maps += episode.maps.medium.length;
+
+					_.each(episode.maps.medium, (mapElement, mapElementIndex) => {
+
+						if (mapElement.length !== 0) {
+							_.each(mapElement, (personElement, personElementIndex) => {
+
+								if (mediumMapsCardData.wins[personElement.name] === undefined) {
+									mediumMapsCardData.wins[personElement.name] = 0
+								}
+
+								if (personElement.status === 1) {
+									mediumMapsCardData.wins[personElement.name]++;
+								}
+
+								if (_dnfs[personElement.name] === undefined) {
+									_dnfs[personElement.name] = 0
+								}
+
+								if (personElement.status === 0) {
+									_dnfs[personElement.name]++;
+								}
+
+								if (_mapsPlayed[personElement.name] === undefined) {
+									_mapsPlayed[personElement.name] = 0
+								}
+
+								_mapsPlayed[personElement.name]++;
+
+							});
+						}
+
+					});
+				}
+			}
+
+		});
+
+		let winnerData = {
+			name: '',
+			wins: -1
+		};
+
+		let winnerDataPerEpisode = {
+			name: '',
+			wins: -1
+		};
+
+		_.each(Object.keys(mediumMapsCardData.wins), (winner, winnerIndex) => {
+			if (mediumMapsCardData.wins[winner] > winnerData.wins) {
+				winnerData.name = winner;
+				winnerData.wins = mediumMapsCardData.wins[winner];
+			}
+
+			let winnerPerEpisodeRate = mediumMapsCardData.wins[winner] / _mapsPlayed[winner];
+
+			if (winnerPerEpisodeRate > winnerDataPerEpisode.wins) {
+				winnerDataPerEpisode.name = winner;
+				winnerDataPerEpisode.wins = winnerPerEpisodeRate;
+			}
+		})
+
+		mediumMapsCardData.winner = winnerData.name;
+		mediumMapsCardData.winnerPerEpisode = winnerDataPerEpisode.name;
+
+		let dnfsData = {
+			name: '',
+			dnfs: -1
+		};
+
+		let dnfsDataPerEpisode = {
+			name: '',
+			dnfs: -1
+		};
+
+		_.each(Object.keys(_dnfs), (dnfElement, dnfElementIndex) => {
+			if (_dnfs[dnfElement] > dnfsData.dnfs) {
+				dnfsData.name = dnfElement;
+				dnfsData.dnfs = _dnfs[dnfElement];
+			}
+
+			let dnfsPerEpisodeRate = _dnfs[dnfElement] / _mapsPlayed[dnfElement];
+
+			if (dnfsPerEpisodeRate > dnfsDataPerEpisode.dnfs) {
+				dnfsDataPerEpisode.name = dnfElement;
+				dnfsDataPerEpisode.dnfs = dnfsPerEpisodeRate;
+			}
+		})
+
+		mediumMapsCardData.dnfs = dnfsData.name;
+		mediumMapsCardData.dnfsPerEpisode = dnfsDataPerEpisode.name
+
+		if (!_foundMaps) {
+			return false;
+		}
+
+		return mediumMapsCardData;
 
 	}
 
