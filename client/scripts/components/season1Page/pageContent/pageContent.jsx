@@ -4,6 +4,7 @@ import Masonry from 'react-masonry-component';
 
 import { MainCardComponent } from './statistic-cards/mainCard.jsx';
 import { LastTenCardComponent } from './statistic-cards/lastTen.jsx';
+import { EasyMapsCardComponent } from './statistic-cards/easyMaps.jsx';
 
 export class PageContentComponent extends React.Component {
 	constructor(props) {
@@ -17,6 +18,7 @@ export class PageContentComponent extends React.Component {
 
 		this.renderMainCard = this.renderMainCard.bind(this);
 		this.renderLastTenCard = this.renderLastTenCard.bind(this);
+		this.renderEasyMapsCard = this.renderEasyMapsCard.bind(this);
 
 	}
 
@@ -35,6 +37,16 @@ export class PageContentComponent extends React.Component {
 			return (
 				<LastTenCardComponent data={this.props.data.lastTen} />
 			);
+		}
+	}
+
+	renderEasyMapsCard() {
+		if (this.props.data.easyMaps !== undefined) {
+			if (this.props.data.easyMaps) {
+				return (
+					<EasyMapsCardComponent data={this.props.data.easyMaps} />
+				);
+			}
 		}
 	}
 
@@ -78,6 +90,7 @@ export class PageContentComponent extends React.Component {
 
 					{this.renderMainCard()}
 					{this.renderLastTenCard()}
+					{this.renderEasyMapsCard()}
 
 				</Masonry>
 
