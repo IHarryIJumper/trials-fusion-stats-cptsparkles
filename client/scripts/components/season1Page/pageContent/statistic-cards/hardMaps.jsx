@@ -16,8 +16,8 @@ export class HardMapsCardComponent extends React.Component {
 		const _this = this;
 		return Object.keys(this.props.data.wins).map((winner) => (
 			<div className="card-information-row mdl-grid" key={winner + '-' + new Date().getTime()}>
-				<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone">{winner}:</div>
-				<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone">{_this.props.data.wins[winner]}</div>
+				<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">{winner}:</div>
+				<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">{_this.props.data.wins[winner]}</div>
 			</div>
 		));
 	}
@@ -47,27 +47,27 @@ export class HardMapsCardComponent extends React.Component {
 				<div className="mdl-card__supporting-text">
 					<div className="card-information">
 						<div className="card-information-row mdl-grid">
-							<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone main-info">Winner:</div>
-							<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone">{this.props.data.winner}</div>
+							<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone mdl-cell--4-col-tablet main-info">Winner:</div>
+							<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">{this.props.data.winner}</div>
 						</div>
 						<div className="card-information-row mdl-grid">
-							<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone">Winner/played map:</div>
-							<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone">{this.props.data.winnerPerEpisode}</div>
+							<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">Winner/played map:</div>
+							<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">{this.props.data.winnerPerEpisode}</div>
 						</div>
 						<div className="card-information-row mdl-grid">
-							<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone">Most DNFs:</div>
-							<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone">{this.props.data.dnfs}</div>
+							<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">Most DNFs:</div>
+							<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">{this.props.data.dnfs}</div>
 						</div>
 						<div className="card-information-row mdl-grid">
-							<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone">DNFs/played map:</div>
-							<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone">{this.props.data.dnfsPerEpisode}</div>
+							<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">DNFs/played map:</div>
+							<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">{this.props.data.dnfsPerEpisode}</div>
 						</div>
 						<div className="card-information-row mdl-grid">
-							<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone">Maps:</div>
-							<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone">{this.props.data.maps}</div>
+							<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">Maps:</div>
+							<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">{this.props.data.maps}</div>
 						</div>
 						<div className="card-information-row mdl-grid">
-							<div className="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone card-separator">Wins:</div>
+							<div className="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet card-separator">Wins:</div>
 						</div>
 						{this.renderWins()}
 					</div>

@@ -26,8 +26,8 @@ export class MainCardComponent extends React.Component {
 		const _this = this;
 		return Object.keys(this.props.data.wins).map((winner) => (
 			<div className="card-information-row mdl-grid" key={winner + '-' + new Date().getTime()}>
-				<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone">{winner} wins:</div>
-				<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone">{_this.props.data.wins[winner]}</div>
+				<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">{winner} wins:</div>
+				<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">{_this.props.data.wins[winner]}</div>
 			</div>
 		));
 	}
@@ -62,24 +62,24 @@ export class MainCardComponent extends React.Component {
 				<div className="mdl-card__supporting-text">
 					<div className="card-information">
 						<div className="card-information-row mdl-grid">
-							<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone main-info">Total winner:</div>
-							<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone">{this.props.data.totalWinner}</div>
+							<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone mdl-cell--4-col-tablet main-info">Total winner:</div>
+							<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">{this.props.data.totalWinner}</div>
 						</div>
 						{this.renderWins()}
 						<div className="card-information-row mdl-grid">
-							<div className="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone card-separator">Last episode:</div>
+							<div className="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet card-separator">Last episode:</div>
 						</div>
 						<div className="card-information-row mdl-grid">
-							<div className="mdl-cell mdl-cell--4-col mdl-cell--2-col-phone">Number:</div>
-							<div className="mdl-cell mdl-cell--8-col mdl-cell--2-col-phone">{this.props.data.lastEpisode.id}</div>
+							<div className="mdl-cell mdl-cell--4-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">Number:</div>
+							<div className="mdl-cell mdl-cell--8-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">{this.props.data.lastEpisode.id}</div>
 						</div>
 						<div className="card-information-row mdl-grid">
-							<div className="mdl-cell mdl-cell--4-col mdl-cell--2-col-phone">Date:</div>
-							<div className="mdl-cell mdl-cell--8-col mdl-cell--2-col-phone">{this.getEpisodeDate()}</div>
+							<div className="mdl-cell mdl-cell--4-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">Date:</div>
+							<div className="mdl-cell mdl-cell--8-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">{this.getEpisodeDate()}</div>
 						</div>
 						<div className="card-information-row mdl-grid">
-							<div className="mdl-cell mdl-cell--4-col mdl-cell--2-col-phone">Name:</div>
-							<div className="mdl-cell mdl-cell--8-col mdl-cell--2-col-phone">{this.props.data.lastEpisode.name}</div>
+							<div className="mdl-cell mdl-cell--4-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">Name:</div>
+							<div className="mdl-cell mdl-cell--8-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">{this.props.data.lastEpisode.name}</div>
 						</div>
 					</div>
 				</div>

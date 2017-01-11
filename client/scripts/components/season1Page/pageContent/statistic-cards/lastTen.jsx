@@ -16,8 +16,8 @@ export class LastTenCardComponent extends React.Component {
 		const _this = this;
 		return Object.keys(this.props.data.wins).map((winner) => (
 			<div className="card-information-row mdl-grid" key={winner + '-' + new Date().getTime()}>
-				<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone">{winner} wins:</div>
-				<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone">{_this.props.data.wins[winner]}</div>
+				<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">{winner} wins:</div>
+				<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">{_this.props.data.wins[winner]}</div>
 			</div>
 		));
 	}
@@ -47,8 +47,8 @@ export class LastTenCardComponent extends React.Component {
 				<div className="mdl-card__supporting-text">
 					<div className="card-information">
 						<div className="card-information-row mdl-grid">
-							<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone main-info">Winner:</div>
-							<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone">{this.props.data.winner}</div>
+							<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone mdl-cell--4-col-tablet main-info">Winner:</div>
+							<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">{this.props.data.winner}</div>
 						</div>
 						{this.renderWins()}
 					</div>
