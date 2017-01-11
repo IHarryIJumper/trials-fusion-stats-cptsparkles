@@ -12,6 +12,7 @@ import { ScoreChartCardComponent } from './statistic-cards/scoreChart.jsx';
 import { FaultsCardComponent } from './statistic-cards/faultsCard.jsx';
 import { DNFsCardComponent } from './statistic-cards/dnfsCard.jsx';
 import { MapsCardComponent } from './statistic-cards/mapsCard.jsx';
+import { DonkeyCardComponent } from './statistic-cards/donkeyCard.jsx';
 
 export class PageContentComponent extends React.Component {
 	constructor(props) {
@@ -33,6 +34,7 @@ export class PageContentComponent extends React.Component {
 		this.renderFaultsCard = this.renderFaultsCard.bind(this);
 		this.renderDNFsCard = this.renderDNFsCard.bind(this);
 		this.renderMapsCard = this.renderMapsCard.bind(this);
+		this.renderDonkeyCard = this.renderDonkeyCard.bind(this);
 
 	}
 
@@ -134,6 +136,16 @@ export class PageContentComponent extends React.Component {
 		}
 	}
 
+	renderDonkeyCard() {
+		if (this.props.data.donkeyData !== undefined) {
+			if (this.props.data.donkeyData) {
+				return (
+					<DonkeyCardComponent data={this.props.data.donkeyData} />
+				);
+			}
+		}
+	}
+
 	componentWillMount() {
 		this.setState({
 			_isMounted: true
@@ -186,6 +198,7 @@ export class PageContentComponent extends React.Component {
 					{this.renderFaultsCard()}
 					{this.renderDNFsCard()}
 					{this.renderMapsCard()}
+					{this.renderDonkeyCard()}
 
 				</Masonry>
 
