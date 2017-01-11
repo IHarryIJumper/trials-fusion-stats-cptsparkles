@@ -44,6 +44,7 @@ export const DataParse = {
 		parsedData.hardMaps = DataParse.hardMapsData(data);
 		parsedData.lastEpisodeData = DataParse.lastEpisodeData(data);
 		parsedData.scoreLineChartData = DataParse.scoreLineChartData(data);
+		parsedData.faultsData = DataParse.faultsData(parsedData.easyMaps, parsedData.mediumMaps, parsedData.hardMaps);
 
 		return parsedData;
 	},
@@ -147,11 +148,13 @@ export const DataParse = {
 		let easyMapsCardData = {
 				wins: {},
 				episodes: {},
+				faults: {},
 				maps: 0,
 				dnfs: '',
 				dnfsPerEpisode: '',
 				winner: '',
-				winnerPerEpisode: ''
+				winnerPerEpisode: '',
+				mapsPlayed: {}
 			},
 			_dnfs = {},
 			_mapsPlayed = {},
@@ -182,7 +185,7 @@ export const DataParse = {
 							_.each(mapElement, (personElement, personElementIndex) => {
 
 								if (easyMapsCardData.wins[personElement.name] === undefined) {
-									easyMapsCardData.wins[personElement.name] = 0
+									easyMapsCardData.wins[personElement.name] = 0;
 								}
 
 								if (personElement.status === 1) {
@@ -190,15 +193,21 @@ export const DataParse = {
 								}
 
 								if (_dnfs[personElement.name] === undefined) {
-									_dnfs[personElement.name] = 0
+									_dnfs[personElement.name] = 0;
 								}
 
 								if (personElement.status === 0) {
 									_dnfs[personElement.name]++;
 								}
 
+								if (easyMapsCardData.faults[personElement.name] === undefined) {
+									easyMapsCardData.faults[personElement.name] = 0;
+								}
+
+								easyMapsCardData.faults[personElement.name] += personElement.faults;
+
 								if (_mapsPlayed[personElement.name] === undefined) {
-									_mapsPlayed[personElement.name] = 0
+									_mapsPlayed[personElement.name] = 0;
 								}
 
 								_mapsPlayed[personElement.name]++;
@@ -266,6 +275,8 @@ export const DataParse = {
 		easyMapsCardData.dnfs = dnfsData.name;
 		easyMapsCardData.dnfsPerEpisode = dnfsDataPerEpisode.name
 
+		easyMapsCardData.mapsPlayed = _mapsPlayed;
+
 		if (!_foundMaps) {
 			return false;
 		}
@@ -278,11 +289,13 @@ export const DataParse = {
 		let mediumMapsCardData = {
 				wins: {},
 				episodes: {},
+				faults: {},
 				maps: 0,
 				dnfs: '',
 				dnfsPerEpisode: '',
 				winner: '',
-				winnerPerEpisode: ''
+				winnerPerEpisode: '',
+				mapsPlayed: {}
 			},
 			_dnfs = {},
 			_mapsPlayed = {},
@@ -327,6 +340,12 @@ export const DataParse = {
 								if (personElement.status === 0) {
 									_dnfs[personElement.name]++;
 								}
+
+								if (mediumMapsCardData.faults[personElement.name] === undefined) {
+									mediumMapsCardData.faults[personElement.name] = 0;
+								}
+
+								mediumMapsCardData.faults[personElement.name] += personElement.faults;
 
 								if (_mapsPlayed[personElement.name] === undefined) {
 									_mapsPlayed[personElement.name] = 0
@@ -397,6 +416,8 @@ export const DataParse = {
 		mediumMapsCardData.dnfs = dnfsData.name;
 		mediumMapsCardData.dnfsPerEpisode = dnfsDataPerEpisode.name
 
+		mediumMapsCardData.mapsPlayed = _mapsPlayed;
+
 		if (!_foundMaps) {
 			return false;
 		}
@@ -409,11 +430,13 @@ export const DataParse = {
 		let hardMapsCardData = {
 				wins: {},
 				episodes: {},
+				faults: {},
 				maps: 0,
 				dnfs: '',
 				dnfsPerEpisode: '',
 				winner: '',
-				winnerPerEpisode: ''
+				winnerPerEpisode: '',
+				mapsPlayed: {}
 			},
 			_dnfs = {},
 			_mapsPlayed = {},
@@ -458,6 +481,12 @@ export const DataParse = {
 								if (personElement.status === 0) {
 									_dnfs[personElement.name]++;
 								}
+
+								if (hardMapsCardData.faults[personElement.name] === undefined) {
+									hardMapsCardData.faults[personElement.name] = 0;
+								}
+
+								hardMapsCardData.faults[personElement.name] += personElement.faults;
 
 								if (_mapsPlayed[personElement.name] === undefined) {
 									_mapsPlayed[personElement.name] = 0
@@ -527,6 +556,8 @@ export const DataParse = {
 
 		hardMapsCardData.dnfs = dnfsData.name;
 		hardMapsCardData.dnfsPerEpisode = dnfsDataPerEpisode.name
+
+		hardMapsCardData.mapsPlayed = _mapsPlayed;
 
 		if (!_foundMaps) {
 			return false;
@@ -643,7 +674,114 @@ export const DataParse = {
 
 		return scoreLineChartCardData;
 
-	}
+	},
+
+	faultsData: (easyMapsData, mediumMapsData, hardMapsData, extremeMapsData) => {
+		let faultsCardData = {
+				faults: {},
+				winner: '',
+				winnerPerEpisode: ''
+			},
+			_mapsPlayed = {};
+
+
+		if (easyMapsData !== undefined) {
+			if (easyMapsData) {
+				_.each(Object.keys(easyMapsData.faults), (faultsElement, faultsElementIndex) => {
+
+					if (faultsCardData.faults[faultsElement] === undefined) {
+						faultsCardData.faults[faultsElement] = 0;
+					}
+					faultsCardData.faults[faultsElement] += easyMapsData.faults[faultsElement];
+
+					if (_mapsPlayed[faultsElement] === undefined) {
+						_mapsPlayed[faultsElement] = 0;
+					}
+					_mapsPlayed[faultsElement] += easyMapsData.mapsPlayed[faultsElement];
+
+				});
+			}
+		}
+		if (mediumMapsData !== undefined) {
+			if (mediumMapsData) {
+				_.each(Object.keys(mediumMapsData.faults), (faultsElement, faultsElementIndex) => {
+					if (faultsCardData.faults[faultsElement] === undefined) {
+						faultsCardData.faults[faultsElement] = 0;
+					}
+					faultsCardData.faults[faultsElement] += mediumMapsData.faults[faultsElement];
+
+					if (_mapsPlayed[faultsElement] === undefined) {
+						_mapsPlayed[faultsElement] = 0;
+					}
+					_mapsPlayed[faultsElement] += mediumMapsData.mapsPlayed[faultsElement];
+				});
+			}
+		}
+		if (hardMapsData !== undefined) {
+			if (hardMapsData) {
+				_.each(Object.keys(hardMapsData.faults), (faultsElement, faultsElementIndex) => {
+					if (faultsCardData.faults[faultsElement] === undefined) {
+						faultsCardData.faults[faultsElement] = 0;
+					}
+					faultsCardData.faults[faultsElement] += hardMapsData.faults[faultsElement];
+
+					if (_mapsPlayed[faultsElement] === undefined) {
+						_mapsPlayed[faultsElement] = 0;
+					}
+					_mapsPlayed[faultsElement] += hardMapsData.mapsPlayed[faultsElement];
+				});
+			}
+		}
+		if (extremeMapsData !== undefined) {
+			if (extremeMapsData) {
+				_.each(Object.keys(extremeMapsData.faults), (faultsElement, faultsElementIndex) => {
+					if (faultsCardData.faults[faultsElement] === undefined) {
+						faultsCardData.faults[faultsElement] = 0;
+					}
+					faultsCardData.faults[faultsElement] += extremeMapsData.faults[faultsElement];
+
+					if (_mapsPlayed[faultsElement] === undefined) {
+						_mapsPlayed[faultsElement] = 0;
+					}
+					_mapsPlayed[faultsElement] += extremeMapsData.mapsPlayed[faultsElement];
+				});
+			}
+		}
+
+		let winnerData = {
+			name: '',
+			faults: -1
+		};
+
+		let winnerDataPerEpisode = {
+			name: '',
+			faults: -1
+		};
+
+		_.each(Object.keys(faultsCardData.faults), (winner, winnerIndex) => {
+			if (faultsCardData.faults[winner] > winnerData.faults) {
+				winnerData.name = winner;
+				winnerData.faults = faultsCardData.faults[winner];
+			}
+
+			let winnerPerEpisodeRate = faultsCardData.faults[winner] / _mapsPlayed[winner];
+
+			if (winnerPerEpisodeRate > winnerDataPerEpisode.faults) {
+				winnerDataPerEpisode.name = winner;
+				winnerDataPerEpisode.faults = winnerPerEpisodeRate;
+			}
+		});
+
+		faultsCardData.winner = winnerData.name;
+		faultsCardData.winnerPerEpisode = winnerDataPerEpisode.name;
+
+		if (faultsCardData.winner === '') {
+			return false;
+		}
+
+		return faultsCardData;
+
+	},
 
 
 

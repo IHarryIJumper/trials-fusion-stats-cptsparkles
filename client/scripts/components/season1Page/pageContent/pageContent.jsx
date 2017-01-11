@@ -9,6 +9,7 @@ import { EasyMapsCardComponent } from './statistic-cards/easyMaps.jsx';
 import { MediumMapsCardComponent } from './statistic-cards/mediumMaps.jsx';
 import { HardMapsCardComponent } from './statistic-cards/hardMaps.jsx';
 import { ScoreChartCardComponent } from './statistic-cards/scoreChart.jsx';
+import { FaultsCardComponent } from './statistic-cards/faultsCard.jsx';
 
 export class PageContentComponent extends React.Component {
 	constructor(props) {
@@ -97,6 +98,16 @@ export class PageContentComponent extends React.Component {
 		}
 	}
 
+	renderFaultsCard() {
+		if (this.props.data.faultsData !== undefined) {
+			if (this.props.data.faultsData) {
+				return (
+					<FaultsCardComponent data={this.props.data.faultsData} />
+				);
+			}
+		}
+	}
+
 	componentWillMount() {
 		this.setState({
 			_isMounted: true
@@ -146,6 +157,7 @@ export class PageContentComponent extends React.Component {
 					{this.renderMediumMapsCard()}
 					{this.renderHardMapsCard()}
 					{this.renderScoreChartCard()}
+					{this.renderFaultsCard()}
 
 				</Masonry>
 
