@@ -1,4 +1,7 @@
 import _ from 'lodash';
+
+import materialColor from 'random-material-color';
+
 import {
 	ObjectHelper
 } from './objectHelper.js';
@@ -40,6 +43,7 @@ export const DataParse = {
 		parsedData.mediumMaps = DataParse.mediumMapsData(data);
 		parsedData.hardMaps = DataParse.hardMapsData(data);
 		parsedData.lastEpisodeData = DataParse.lastEpisodeData(data);
+		parsedData.scoreLineChartData = DataParse.scoreLineChartData(data);
 
 		return parsedData;
 	},
@@ -534,10 +538,10 @@ export const DataParse = {
 
 	lastEpisodeData: (seasonData) => {
 		let lastEpisodeCardData = {
-			score: {},
-			winner: ''
-		},
-		lastEpisode;
+				score: {},
+				winner: ''
+			},
+			lastEpisode;
 
 		if (seasonData.length > 0) {
 			lastEpisode = seasonData[seasonData.length - 1];
@@ -564,6 +568,80 @@ export const DataParse = {
 		lastEpisodeCardData.winner = winnerData.name;
 
 		return lastEpisodeCardData;
+
+	},
+
+	scoreLineChartData: (seasonData) => {
+		let scoreLineChartCardData = {
+				labels: [],
+				datasets: []
+			},
+			personsDatasets = {};
+
+		_.each(seasonData, (episode, episodeIndex) => {
+
+			_.each(episode.persons, (person, personIndex) => {
+				if (personsDatasets[person.name] === undefined) {
+					personsDatasets[person.name] = [];
+				}
+			});
+
+		});
+
+		_.each(seasonData, (episode, episodeIndex) => {
+
+			scoreLineChartCardData.labels.push(episode.episode.id + ' ep');
+
+			_.each(episode.final, (finalScore, finalScoreIndex) => {
+				if (personsDatasets[finalScore.name] !== undefined) {
+					personsDatasets[finalScore.name].push(finalScore.score);
+				}
+			});
+
+			_.each(Object.keys(personsDatasets), (personsDataset, personsDatasetIndex) => {
+				if (personsDatasets[personsDataset].length < scoreLineChartCardData.labels.length) {
+					personsDatasets[personsDataset].push(0);
+				}
+			});
+
+		});
+
+
+		_.each(Object.keys(personsDatasets), (personsDataset, personsDatasetIndex) => {
+			let _dataset = {
+				label: personsDataset,
+				data: personsDatasets[personsDataset],
+				fill: false,
+				lineTension: 0.1
+			};
+
+			switch (personsDataset) {
+				case 'Jordan':
+					_dataset.borderColor = '#c62828';
+					_dataset.backgroundColor = '#c62828';
+					break;
+				case 'Nick':
+					_dataset.borderColor = '#1565C0';
+					_dataset.backgroundColor = '#1565C0';
+					break;
+				default:
+					_dataset.borderColor = materialColor.getColor({
+						shades: ['700', '800']
+					});
+					_dataset.backgroundColor = _dataset.borderColor;
+					break;
+			}
+
+			scoreLineChartCardData.datasets.push(_dataset);
+		});
+
+		if (scoreLineChartCardData.labels.length === 0) {
+			return false;
+		} else if (scoreLineChartCardData.labels.length < 2) {
+			scoreLineChartCardData.labels.push(scoreLineChartCardData.labels.length + 1 + ' ep');
+		}
+
+		return scoreLineChartCardData;
 
 	}
 

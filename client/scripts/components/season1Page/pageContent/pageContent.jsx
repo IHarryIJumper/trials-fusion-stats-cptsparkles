@@ -8,6 +8,7 @@ import { LastTenCardComponent } from './statistic-cards/lastTen.jsx';
 import { EasyMapsCardComponent } from './statistic-cards/easyMaps.jsx';
 import { MediumMapsCardComponent } from './statistic-cards/mediumMaps.jsx';
 import { HardMapsCardComponent } from './statistic-cards/hardMaps.jsx';
+import { ScoreChartCardComponent } from './statistic-cards/scoreChart.jsx';
 
 export class PageContentComponent extends React.Component {
 	constructor(props) {
@@ -86,6 +87,16 @@ export class PageContentComponent extends React.Component {
 		}
 	}
 
+	renderScoreChartCard() {
+		if (this.props.data.scoreLineChartData !== undefined) {
+			if (this.props.data.scoreLineChartData) {
+				return (
+					<ScoreChartCardComponent data={this.props.data.scoreLineChartData} />
+				);
+			}
+		}
+	}
+
 	componentWillMount() {
 		this.setState({
 			_isMounted: true
@@ -130,6 +141,7 @@ export class PageContentComponent extends React.Component {
 					{this.renderEasyMapsCard()}
 					{this.renderMediumMapsCard()}
 					{this.renderHardMapsCard()}
+					{this.renderScoreChartCard()}
 
 				</Masonry>
 
