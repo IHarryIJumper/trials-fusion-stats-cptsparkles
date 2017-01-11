@@ -118,43 +118,6 @@ export class SeasonOnePageComponent extends React.Component {
 	componentDidMount() {
 		this.getData();
 		this.snackbarContainer = document.querySelector('#toast-notification');
-		/*let progress = 0;
-		setTimeout(() => {
-			progress += 20;
-			this.setState({
-				loadProgress: progress
-			})
-
-			setTimeout(() => {
-				progress += 20;
-				this.setState({
-					loadProgress: progress
-				})
-				setTimeout(() => {
-					progress += 20;
-					this.setState({
-						loadProgress: progress
-					})
-					setTimeout(() => {
-						progress += 20;
-						this.setState({
-							loadProgress: progress
-						})
-						setTimeout(() => {
-							progress += 20;
-							this.setState({
-								loadProgress: progress
-							})
-							setTimeout(() => {
-								this.setState({
-									preloader: false
-								})
-							}, 1000)
-						}, 1000)
-					}, 1000)
-				}, 1000)
-			}, 1000)
-		}, 1000)*/
 	}
 
 	render() {
@@ -184,6 +147,7 @@ export class SeasonOnePageComponent extends React.Component {
 					</nav>
 				</div>
 				<main className="mdl-layout__content content-scrollbar">
+				
 					{this.renderPageContent()}
 					{this.renderPreloader()}
 
