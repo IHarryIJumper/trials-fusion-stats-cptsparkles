@@ -32,6 +32,8 @@ export class SeasonOnePageComponent extends React.Component {
 		this.setPreloaderProgress = this.setPreloaderProgress.bind(this);
 		this.exitToMainPage = this.exitToMainPage.bind(this);
 		this.renderPreloader = this.renderPreloader.bind(this);
+		this.openDonationPage = this.openDonationPage.bind(this);
+		
 
 	}
 
@@ -85,6 +87,10 @@ export class SeasonOnePageComponent extends React.Component {
 
 	exitToMainPage() {
 		AppLocation.goToPage('');
+	}
+
+	openDonationPage() {
+		AppLocation.goToPage('donation');
 	}
 
 	renderPageContent() {
@@ -168,7 +174,7 @@ export class SeasonOnePageComponent extends React.Component {
 							</li>
 							<li><a href="https://github.com/IHarryIJumper">Github</a></li>
 							<li><a href="https://vk.com/iharryijumper">Contacts</a></li>
-							<li><a href="#">Donation</a></li>
+							<li><a onClick={this.openDonationPage}>Donation</a></li>
 						</ul>
 					</div>
 				</footer>

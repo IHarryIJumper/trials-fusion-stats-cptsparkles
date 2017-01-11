@@ -25,6 +25,10 @@ export const routes = (app) => {
         RoutesMethods.PagesRoutes.season2Page(req, res, app);
     });
 
+    app.get('/donation', (req, res) => {
+        RoutesMethods.PagesRoutes.donationPage(req, res, app);
+    });
+
     app.get('/season1data', (req, res) => {
         RoutesMethods.DataRoutes.getSeason1Data(req, res, app);
     });

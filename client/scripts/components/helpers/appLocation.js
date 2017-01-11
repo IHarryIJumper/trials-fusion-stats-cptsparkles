@@ -9,5 +9,9 @@ export const AppLocation = {
 
 	getRequestUrl: (page) => {
 		return AppLocation.getCurrentLocation() + page;
+	},
+
+	goBack: () => {
+		window.history.back();
 	}
 };

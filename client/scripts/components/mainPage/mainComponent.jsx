@@ -15,6 +15,7 @@ export class MainPageComponent extends React.Component {
 
 		this.goToSeason1 = this.goToSeason1.bind(this);
 		this.goToSeason2 = this.goToSeason2.bind(this);
+		this.openDonationPage = this.openDonationPage.bind(this);
 
 	}
 
@@ -24,6 +25,10 @@ export class MainPageComponent extends React.Component {
 
 	goToSeason2() {
 		AppLocation.goToPage('season2');
+	}
+
+	openDonationPage() {
+		AppLocation.goToPage('donation');
 	}
 
 	componentWillMount() {
@@ -76,7 +81,7 @@ export class MainPageComponent extends React.Component {
 							<ul className="mdl-mini-footer__link-list">
 								<li><a href="https://github.com/IHarryIJumper">Github</a></li>
 								<li><a href="https://vk.com/iharryijumper">Contacts</a></li>
-								<li><a href="#">Donation</a></li>
+								<li><a onClick={this.openDonationPage}>Donation</a></li>
 							</ul>
 						</div>
 					</footer>

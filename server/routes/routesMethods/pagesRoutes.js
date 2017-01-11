@@ -26,4 +26,12 @@ export class PagesRoutes {
         app.use(express.static(__dirname + '/../../../public'));
 		res.sendFile('season2.html', { root: __dirname + '/../../../client/view/'});
 	}
+
+	static donationPage(req, res, app) {
+		console.logWithTime('GET /donationPage');
+
+        app.use(express.static(__dirname + '/../../../dist'));
+        app.use(express.static(__dirname + '/../../../public'));
+		res.sendFile('donate.html', { root: __dirname + '/../../../client/view/'});
+	}
 }
