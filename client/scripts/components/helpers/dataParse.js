@@ -48,6 +48,7 @@ export const DataParse = {
 		parsedData.dnfsData = DataParse.dnfsData(parsedData.easyMaps, parsedData.mediumMaps, parsedData.hardMaps);
 		parsedData.mapsData = DataParse.mapsData(parsedData.easyMaps, parsedData.mediumMaps, parsedData.hardMaps);
 		parsedData.donkeyData = DataParse.donkeyData(parsedData.easyMaps, parsedData.mediumMaps, parsedData.hardMaps);
+		parsedData.pandaData = DataParse.pandaData(parsedData.easyMaps, parsedData.mediumMaps, parsedData.hardMaps);
 
 		return parsedData;
 	},
@@ -1126,6 +1127,113 @@ export const DataParse = {
 		}
 
 		return donkeyCardData;
+
+	},
+
+	pandaData: (easyMapsData, mediumMapsData, hardMapsData, extremeMapsData) => {
+		let pandaCardData = {
+				panda: {},
+				winner: '',
+				winnerPerEpisode: ''
+			},
+			_mapsPlayed = {};
+
+
+		if (easyMapsData !== undefined) {
+			if (easyMapsData) {
+				_.each(Object.keys(easyMapsData.panda), (pandaElement, pandaElementIndex) => {
+
+					if (pandaCardData.panda[pandaElement] === undefined) {
+						pandaCardData.panda[pandaElement] = 0;
+					}
+					pandaCardData.panda[pandaElement] += easyMapsData.panda[pandaElement];
+
+					if (_mapsPlayed[pandaElement] === undefined) {
+						_mapsPlayed[pandaElement] = 0;
+					}
+					_mapsPlayed[pandaElement] += easyMapsData.mapsPlayed[pandaElement];
+
+				});
+			}
+		}
+		if (mediumMapsData !== undefined) {
+			if (mediumMapsData) {
+				_.each(Object.keys(mediumMapsData.faults), (pandaElement, pandaElementIndex) => {
+					if (pandaCardData.panda[pandaElement] === undefined) {
+						pandaCardData.panda[pandaElement] = 0;
+					}
+					pandaCardData.panda[pandaElement] += mediumMapsData.panda[pandaElement];
+
+					if (_mapsPlayed[pandaElement] === undefined) {
+						_mapsPlayed[pandaElement] = 0;
+					}
+					_mapsPlayed[pandaElement] += mediumMapsData.mapsPlayed[pandaElement];
+				});
+			}
+		}
+		if (hardMapsData !== undefined) {
+			if (hardMapsData) {
+				_.each(Object.keys(hardMapsData.faults), (pandaElement, pandaElementIndex) => {
+					if (pandaCardData.panda[pandaElement] === undefined) {
+						pandaCardData.panda[pandaElement] = 0;
+					}
+					pandaCardData.panda[pandaElement] += hardMapsData.panda[pandaElement];
+
+					if (_mapsPlayed[pandaElement] === undefined) {
+						_mapsPlayed[pandaElement] = 0;
+					}
+					_mapsPlayed[pandaElement] += hardMapsData.mapsPlayed[pandaElement];
+				});
+			}
+		}
+		if (extremeMapsData !== undefined) {
+			if (extremeMapsData) {
+				_.each(Object.keys(extremeMapsData.faults), (pandaElement, pandaElementIndex) => {
+					if (pandaCardData.panda[pandaElement] === undefined) {
+						pandaCardData.panda[pandaElement] = 0;
+					}
+					pandaCardData.panda[pandaElement] += extremeMapsData.panda[pandaElement];
+
+					if (_mapsPlayed[pandaElement] === undefined) {
+						_mapsPlayed[pandaElement] = 0;
+					}
+					_mapsPlayed[pandaElement] += extremeMapsData.mapsPlayed[pandaElement];
+				});
+			}
+		}
+
+		let winnerData = {
+			name: '',
+			panda: -1
+		};
+
+		let winnerDataPerEpisode = {
+			name: '',
+			panda: -1
+		};
+
+		_.each(Object.keys(pandaCardData.panda), (winner, winnerIndex) => {
+			if (pandaCardData.panda[winner] > winnerData.panda) {
+				winnerData.name = winner;
+				winnerData.panda = pandaCardData.panda[winner];
+			}
+
+			let winnerPerEpisodeRate = pandaCardData.panda[winner] / _mapsPlayed[winner];
+
+			if (winnerPerEpisodeRate > winnerDataPerEpisode.panda) {
+				winnerDataPerEpisode.name = winner;
+				winnerDataPerEpisode.panda = winnerPerEpisodeRate;
+			}
+		});
+
+		pandaCardData.winner = winnerData.name;
+		pandaCardData.winnerPerEpisode = winnerDataPerEpisode.name;
+
+		if (pandaCardData.winner === '') {
+			return false;
+		}
+
+		return pandaCardData;
 
 	}
 
