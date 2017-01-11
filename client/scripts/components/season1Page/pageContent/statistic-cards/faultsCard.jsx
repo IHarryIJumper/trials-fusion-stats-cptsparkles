@@ -51,7 +51,7 @@ export class FaultsCardComponent extends React.Component {
 							<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">{this.props.data.winner}</div>
 						</div>
 						<div className="card-information-row mdl-grid">
-							<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">Faults/map:</div>
+							<div className="mdl-cell mdl-cell--7-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">Faults/maps:</div>
 							<div className="mdl-cell mdl-cell--5-col mdl-cell--2-col-phone mdl-cell--4-col-tablet">{this.props.data.winnerPerEpisode}</div>
 						</div>
 						<div className="card-information-row mdl-grid">
