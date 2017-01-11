@@ -133,7 +133,11 @@ export class PageContentComponent extends React.Component {
 						transitionDuration: 100
 					}}
 					disableImagesLoaded={false}
-					updateOnEachImageLoad={false}>
+					updateOnEachImageLoad={false}
+					onLayoutComplete={(laidOutItems) => {
+						console.log('Masonry!');
+						console.log(laidOutItems);
+					}}>
 
 					{this.renderMainCard()}
 					{this.renderLastEpisodeCard()}
