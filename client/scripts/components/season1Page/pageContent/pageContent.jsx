@@ -11,6 +11,7 @@ import { HardMapsCardComponent } from './statistic-cards/hardMaps.jsx';
 import { ScoreChartCardComponent } from './statistic-cards/scoreChart.jsx';
 import { FaultsCardComponent } from './statistic-cards/faultsCard.jsx';
 import { DNFsCardComponent } from './statistic-cards/dnfsCard.jsx';
+import { MapsCardComponent } from './statistic-cards/mapsCard.jsx';
 
 export class PageContentComponent extends React.Component {
 	constructor(props) {
@@ -31,6 +32,7 @@ export class PageContentComponent extends React.Component {
 		this.renderScoreChartCard = this.renderScoreChartCard.bind(this);
 		this.renderFaultsCard = this.renderFaultsCard.bind(this);
 		this.renderDNFsCard = this.renderDNFsCard.bind(this);
+		this.renderMapsCard = this.renderMapsCard.bind(this);
 
 	}
 
@@ -122,6 +124,16 @@ export class PageContentComponent extends React.Component {
 		}
 	}
 
+	renderMapsCard() {
+		if (this.props.data.mapsData !== undefined) {
+			if (this.props.data.mapsData) {
+				return (
+					<MapsCardComponent data={this.props.data.mapsData} />
+				);
+			}
+		}
+	}
+
 	componentWillMount() {
 		this.setState({
 			_isMounted: true
@@ -173,6 +185,7 @@ export class PageContentComponent extends React.Component {
 					{this.renderScoreChartCard()}
 					{this.renderFaultsCard()}
 					{this.renderDNFsCard()}
+					{this.renderMapsCard()}
 
 				</Masonry>
 

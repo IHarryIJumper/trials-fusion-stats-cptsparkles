@@ -46,6 +46,7 @@ export const DataParse = {
 		parsedData.scoreLineChartData = DataParse.scoreLineChartData(data);
 		parsedData.faultsData = DataParse.faultsData(parsedData.easyMaps, parsedData.mediumMaps, parsedData.hardMaps);
 		parsedData.dnfsData = DataParse.dnfsData(parsedData.easyMaps, parsedData.mediumMaps, parsedData.hardMaps);
+		parsedData.mapsData = DataParse.mapsData(parsedData.easyMaps, parsedData.mediumMaps, parsedData.hardMaps);
 
 		return parsedData;
 	},
@@ -151,6 +152,7 @@ export const DataParse = {
 				episodes: {},
 				faults: {},
 				maps: 0,
+				mapsDropped: 0,
 				dnfsCounter: {},
 				dnfs: '',
 				dnfsPerEpisode: '',
@@ -183,38 +185,44 @@ export const DataParse = {
 
 					_.each(episode.maps.easy, (mapElement, mapElementIndex) => {
 
-						if (mapElement.length !== 0) {
-							_.each(mapElement, (personElement, personElementIndex) => {
+						if (mapElement === 'dropped') {
+							easyMapsCardData.mapsDropped++;
+						} else {
 
-								if (easyMapsCardData.wins[personElement.name] === undefined) {
-									easyMapsCardData.wins[personElement.name] = 0;
-								}
+							if (mapElement.length !== 0) {
+								_.each(mapElement, (personElement, personElementIndex) => {
 
-								if (personElement.status === 1) {
-									easyMapsCardData.wins[personElement.name]++;
-								}
+									if (easyMapsCardData.wins[personElement.name] === undefined) {
+										easyMapsCardData.wins[personElement.name] = 0;
+									}
 
-								if (_dnfs[personElement.name] === undefined) {
-									_dnfs[personElement.name] = 0;
-								}
+									if (personElement.status === 1) {
+										easyMapsCardData.wins[personElement.name]++;
+									}
 
-								if (personElement.status === 0) {
-									_dnfs[personElement.name]++;
-								}
+									if (_dnfs[personElement.name] === undefined) {
+										_dnfs[personElement.name] = 0;
+									}
 
-								if (easyMapsCardData.faults[personElement.name] === undefined) {
-									easyMapsCardData.faults[personElement.name] = 0;
-								}
+									if (personElement.status === 0) {
+										_dnfs[personElement.name]++;
+									}
 
-								easyMapsCardData.faults[personElement.name] += personElement.faults;
+									if (easyMapsCardData.faults[personElement.name] === undefined) {
+										easyMapsCardData.faults[personElement.name] = 0;
+									}
 
-								if (_mapsPlayed[personElement.name] === undefined) {
-									_mapsPlayed[personElement.name] = 0;
-								}
+									easyMapsCardData.faults[personElement.name] += personElement.faults;
 
-								_mapsPlayed[personElement.name]++;
+									if (_mapsPlayed[personElement.name] === undefined) {
+										_mapsPlayed[personElement.name] = 0;
+									}
 
-							});
+									_mapsPlayed[personElement.name]++;
+
+								});
+							}
+
 						}
 
 					});
@@ -294,6 +302,7 @@ export const DataParse = {
 				episodes: {},
 				faults: {},
 				maps: 0,
+				mapsDropped: 0,
 				dnfsCounter: {},
 				dnfs: '',
 				dnfsPerEpisode: '',
@@ -326,38 +335,43 @@ export const DataParse = {
 
 					_.each(episode.maps.medium, (mapElement, mapElementIndex) => {
 
-						if (mapElement.length !== 0) {
-							_.each(mapElement, (personElement, personElementIndex) => {
+						if (mapElement === 'dropped') {
+							mediumMapsCardData.mapsDropped++;
+						} else {
 
-								if (mediumMapsCardData.wins[personElement.name] === undefined) {
-									mediumMapsCardData.wins[personElement.name] = 0
-								}
+							if (mapElement.length !== 0) {
+								_.each(mapElement, (personElement, personElementIndex) => {
 
-								if (personElement.status === 1) {
-									mediumMapsCardData.wins[personElement.name]++;
-								}
+									if (mediumMapsCardData.wins[personElement.name] === undefined) {
+										mediumMapsCardData.wins[personElement.name] = 0
+									}
 
-								if (_dnfs[personElement.name] === undefined) {
-									_dnfs[personElement.name] = 0
-								}
+									if (personElement.status === 1) {
+										mediumMapsCardData.wins[personElement.name]++;
+									}
 
-								if (personElement.status === 0) {
-									_dnfs[personElement.name]++;
-								}
+									if (_dnfs[personElement.name] === undefined) {
+										_dnfs[personElement.name] = 0
+									}
 
-								if (mediumMapsCardData.faults[personElement.name] === undefined) {
-									mediumMapsCardData.faults[personElement.name] = 0;
-								}
+									if (personElement.status === 0) {
+										_dnfs[personElement.name]++;
+									}
 
-								mediumMapsCardData.faults[personElement.name] += personElement.faults;
+									if (mediumMapsCardData.faults[personElement.name] === undefined) {
+										mediumMapsCardData.faults[personElement.name] = 0;
+									}
 
-								if (_mapsPlayed[personElement.name] === undefined) {
-									_mapsPlayed[personElement.name] = 0
-								}
+									mediumMapsCardData.faults[personElement.name] += personElement.faults;
 
-								_mapsPlayed[personElement.name]++;
+									if (_mapsPlayed[personElement.name] === undefined) {
+										_mapsPlayed[personElement.name] = 0
+									}
 
-							});
+									_mapsPlayed[personElement.name]++;
+
+								});
+							}
 						}
 
 					});
@@ -437,6 +451,7 @@ export const DataParse = {
 				episodes: {},
 				faults: {},
 				maps: 0,
+				mapsDropped: 0,
 				dnfsCounter: {},
 				dnfs: '',
 				dnfsPerEpisode: '',
@@ -469,38 +484,44 @@ export const DataParse = {
 
 					_.each(episode.maps.hard, (mapElement, mapElementIndex) => {
 
-						if (mapElement.length !== 0) {
-							_.each(mapElement, (personElement, personElementIndex) => {
+						if (mapElement === 'dropped') {
+							hardMapsCardData.mapsDropped++;
+						} else {
 
-								if (hardMapsCardData.wins[personElement.name] === undefined) {
-									hardMapsCardData.wins[personElement.name] = 0
-								}
+							if (mapElement.length !== 0) {
+								_.each(mapElement, (personElement, personElementIndex) => {
 
-								if (personElement.status === 1) {
-									hardMapsCardData.wins[personElement.name]++;
-								}
+									if (hardMapsCardData.wins[personElement.name] === undefined) {
+										hardMapsCardData.wins[personElement.name] = 0
+									}
 
-								if (_dnfs[personElement.name] === undefined) {
-									_dnfs[personElement.name] = 0
-								}
+									if (personElement.status === 1) {
+										hardMapsCardData.wins[personElement.name]++;
+									}
 
-								if (personElement.status === 0) {
-									_dnfs[personElement.name]++;
-								}
+									if (_dnfs[personElement.name] === undefined) {
+										_dnfs[personElement.name] = 0
+									}
 
-								if (hardMapsCardData.faults[personElement.name] === undefined) {
-									hardMapsCardData.faults[personElement.name] = 0;
-								}
+									if (personElement.status === 0) {
+										_dnfs[personElement.name]++;
+									}
 
-								hardMapsCardData.faults[personElement.name] += personElement.faults;
+									if (hardMapsCardData.faults[personElement.name] === undefined) {
+										hardMapsCardData.faults[personElement.name] = 0;
+									}
 
-								if (_mapsPlayed[personElement.name] === undefined) {
-									_mapsPlayed[personElement.name] = 0
-								}
+									hardMapsCardData.faults[personElement.name] += personElement.faults;
 
-								_mapsPlayed[personElement.name]++;
+									if (_mapsPlayed[personElement.name] === undefined) {
+										_mapsPlayed[personElement.name] = 0
+									}
 
-							});
+									_mapsPlayed[personElement.name]++;
+
+								});
+							}
+
 						}
 
 					});
@@ -894,6 +915,42 @@ export const DataParse = {
 		}
 
 		return dnfsCardData;
+
+	},
+
+	mapsData: (easyMapsData, mediumMapsData, hardMapsData, extremeMapsData) => {
+		let mapsCardData = {
+				maps: 0,
+				mapsDropped: 0
+			};
+
+
+		if (easyMapsData !== undefined) {
+			if (easyMapsData) {
+				mapsCardData.maps+=easyMapsData.maps;
+				mapsCardData.mapsDropped+=easyMapsData.mapsDropped;
+			}
+		}
+		if (mediumMapsData !== undefined) {
+			if (mediumMapsData) {
+				mapsCardData.maps+=mediumMapsData.maps;
+				mapsCardData.mapsDropped+=mediumMapsData.mapsDropped;
+			}
+		}
+		if (hardMapsData !== undefined) {
+			if (hardMapsData) {
+				mapsCardData.maps+=hardMapsData.maps;
+				mapsCardData.mapsDropped+=hardMapsData.mapsDropped;
+			}
+		}
+		if (extremeMapsData !== undefined) {
+			if (extremeMapsData) {
+				mapsCardData.maps+=extremeMapsData.maps;
+				mapsCardData.mapsDropped+=extremeMapsData.mapsDropped;
+			}
+		}
+
+		return mapsCardData;
 
 	}
 
