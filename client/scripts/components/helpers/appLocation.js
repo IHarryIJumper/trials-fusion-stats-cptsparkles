@@ -13,5 +13,9 @@ export const AppLocation = {
 
 	goBack: () => {
 		window.history.back();
+	},
+
+	goToUrl: (url) => {
+		window.location = url;
 	}
 };
