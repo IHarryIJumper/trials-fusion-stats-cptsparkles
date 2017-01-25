@@ -3,7 +3,6 @@
 @import './imports/back-button.less';
 @import './media-queries/devices.less';
 @import './cards/mainCard.less';
-
 .mdl-snackbar {
     z-index: 1001;
     overflow: hidden;
@@ -26,16 +25,20 @@
     width: 100%;
     height: 100%;
     position: absolute;
-
     .mobile ( {
         padding: 0px;
     }
     );
-
     .donation-card {
         margin: 10px;
         display: inline-block;
         min-height: 150px;
+        .desktop( {
+            width: 500px;
+            margin: 10px auto !important;
+            display: block;
+        }
+        );
         .disable-text-selection;
         .text-poiner;
         .mobile ( {
@@ -52,6 +55,38 @@
             .card-information-row {
                 padding-top: 0px !important;
                 padding-bottom: 0px !important;
+            }
+        }
+        .donation-options {
+            .paypal-donation {
+                .paypal-button-image {
+                    position: relative;
+                    width: 200px;
+                    margin-left: -100px;
+                    left: 50%;
+                    margin-bottom: 10px;
+                }
+            }
+            .blockchain-donation {
+                width: 100% !important;
+                .blockchain.stage-begin {
+                    img {
+                        position: relative;
+                        width: 220px;
+                        margin-left: -110px;
+                        left: 50%;
+                        margin-bottom: 10px;
+                    }
+                }
+                .blockchain.stage-ready {
+                    .qr-code {
+                        position: relative;
+                        margin-left: -67px;
+                        left: 50%;
+                        width: 135px;
+                        margin-bottom: 10px;
+                    }
+                }
             }
         }
     }
