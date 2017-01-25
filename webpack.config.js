@@ -41,6 +41,10 @@ var webpackConfig = {
         donation: [
             'webpack-hot-middleware/client',
             __dirname + '/client/scripts/donation.js'
+        ],
+        contacts: [
+            'webpack-hot-middleware/client',
+            __dirname + '/client/scripts/contacts.js'
         ]
     },
     output: {
