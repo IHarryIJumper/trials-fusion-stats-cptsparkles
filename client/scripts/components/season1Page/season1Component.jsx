@@ -1,7 +1,7 @@
 import React from 'react';
 import { unmountComponentAtNode } from 'react-dom';
 
-import request from 'request';
+import * as request from '../../../lib/request/request.js';
 
 import { AppLocation } from '../helpers/appLocation.js';
 import { DataParse } from '../helpers/dataParse.js';
@@ -31,7 +31,7 @@ export class SeasonOnePageComponent extends React.Component {
 		this.pageContentRendered = this.pageContentRendered.bind(this);
 		this.setPreloaderProgress = this.setPreloaderProgress.bind(this);
 		this.renderPreloader = this.renderPreloader.bind(this);
-		
+
 
 	}
 
@@ -41,7 +41,7 @@ export class SeasonOnePageComponent extends React.Component {
 
 		this.setPreloaderProgress();
 
-		request
+		/*request
 			.get(AppLocation.getRequestUrl('season1data'), function (error, response, body) {
 				if (!error && response.statusCode === 200) {
 					if (body.code !== undefined) {
@@ -53,12 +53,29 @@ export class SeasonOnePageComponent extends React.Component {
 						_this.setPreloaderProgress();
 					}
 				}
+			});*/
+
+		request
+			.get(AppLocation.getRequestUrl('season1data'), (body) => {
+
+				if (body.code !== undefined) {
+					const data = { message: JSON.stringify(body) };
+					_this.snackbarContainer.MaterialSnackbar.showSnackbar(data);
+				} else {
+					_this.parseStatisticData(body);
+					_this.setPreloaderProgress();
+				}
+			}, (error) => {
+				_this.snackbarContainer.MaterialSnackbar.showSnackbar(JSON.stringify(error));
 			});
+
+
 	}
 
 	parseStatisticData(data) {
 		this.cardsStatisticData = DataParse.cardsData(data);
-		const snackData = { message: JSON.stringify(this.cardsStatisticData) };
+		// const snackData = { message: JSON.stringify(this.cardsStatisticData) };
+		const snackData = { message: 'Statistical dashboard rendered!' };
 		this.snackbarContainer.MaterialSnackbar.showSnackbar(snackData);
 		this.setPreloaderProgress();
 	}
@@ -156,7 +173,7 @@ export class SeasonOnePageComponent extends React.Component {
 					</nav>
 				</div>
 				<main className="mdl-layout__content content-scrollbar">
-				
+
 					{this.renderPageContent()}
 					{this.renderPreloader()}
 
