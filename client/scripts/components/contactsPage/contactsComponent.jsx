@@ -95,6 +95,7 @@ export class ContactsPageComponent extends React.Component {
 
 										<p>Hello, guys! My name is Andrey Menshikh. I love <a href="https://www.youtube.com/channel/UCshoKvlZGZ20rVgazZp5vnQ">CaptainSparklez</a> Trials series, and I decided to create this statistic dashboard.</p>
 										<p>Hope you like it! :)</p>
+										<p> – Andrey</p>
 
 									</div>
 									<div className="contact-message">
