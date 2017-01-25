@@ -55,9 +55,6 @@ export class DonationPageComponent extends React.Component {
 						<span className="mdl-layout-title">Donation</span>
 						<div className="mdl-layout-spacer"></div>
 						<nav className="mdl-navigation mdl-layout--large-screen-only">
-							<a className="mdl-navigation__link" href="">Link</a>
-							<a className="mdl-navigation__link" href="">Link</a>
-							<a className="mdl-navigation__link" href="">Link</a>
 							<button className="mdl-navigation__button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onClick={this.exitToMainPage}>
 								Exit
 							</button>
