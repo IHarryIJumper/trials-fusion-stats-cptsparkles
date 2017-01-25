@@ -76,6 +76,9 @@ export class SeasonOnePageComponent extends React.Component {
 		this.cardsStatisticData = DataParse.cardsData(data);
 		// const snackData = { message: JSON.stringify(this.cardsStatisticData) };
 		const snackData = { message: 'Statistical dashboard rendered!' };
+		if (this.snackbarContainer.MaterialSnackbar === undefined) {
+			this.snackbarContainer = document.querySelector('#toast-notification');
+		}
 		this.snackbarContainer.MaterialSnackbar.showSnackbar(snackData);
 		this.setPreloaderProgress();
 	}
@@ -168,7 +171,7 @@ export class SeasonOnePageComponent extends React.Component {
 					<nav className="mdl-navigation">
 						<a className="mdl-navigation__link" onClick={this.goToSeason2}>Season 2</a>
 						<a className="mdl-navigation__link" onClick={this.openContactsPage}>Contacts</a>
-						<a className="mdl-navigation__link" onClick={this.openDonationPage}>Link</a>
+						<a className="mdl-navigation__link" onClick={this.openDonationPage}>Donation</a>
 						<a className="mdl-navigation__link exit" onClick={this.exitToMainPage}>Exit</a>
 					</nav>
 				</div>
