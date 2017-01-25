@@ -3,6 +3,10 @@ import { unmountComponentAtNode } from 'react-dom';
 
 import { AppLocation } from '../helpers/appLocation.js';
 
+import BackgroundImage from './images/logo-blur.jpg';
+import SeasonOneImage from './images/logo-blur.jpg';
+import SeasonTwoImage from './images/logo-blur.jpg';
+
 import '../../../lib/jquery-focuspoint/js/jquery.focuspoint.min.js';
 
 export class MainPageComponent extends React.Component {
@@ -56,7 +60,7 @@ export class MainPageComponent extends React.Component {
 					data-image-w="900"
 					data-image-h="900">
 					<div></div>
-					<img src="logo-blur.jpg" />
+					<img src={BackgroundImage} />
 				</div>
 
 				<div id='menu-container'>
