@@ -7,7 +7,7 @@ export class PagesRoutes {
 		console.logWithTime('GET /');
 		
         app.use(express.static(__dirname + '/../../../dist'));
-        app.use(express.static(__dirname + '/../../../public'));
+        // app.use(express.static(__dirname + '/../../../public'));
 		res.sendFile('main.html', { root: __dirname + '/../../../client/view/'});
 	}
 
@@ -33,5 +33,13 @@ export class PagesRoutes {
         app.use(express.static(__dirname + '/../../../dist'));
         app.use(express.static(__dirname + '/../../../public'));
 		res.sendFile('donate.html', { root: __dirname + '/../../../client/view/'});
+	}
+
+	static contactsPage(req, res, app) {
+		console.logWithTime('GET /contactsPage');
+
+        app.use(express.static(__dirname + '/../../../dist'));
+        app.use(express.static(__dirname + '/../../../public'));
+		res.sendFile('contacts.html', { root: __dirname + '/../../../client/view/'});
 	}
 }

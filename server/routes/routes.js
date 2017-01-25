@@ -29,6 +29,10 @@ export const routes = (app) => {
         RoutesMethods.PagesRoutes.donationPage(req, res, app);
     });
 
+    app.get('/contacts', (req, res) => {
+        RoutesMethods.PagesRoutes.contactsPage(req, res, app);
+    });
+
     app.get('/season1data', (req, res) => {
         RoutesMethods.DataRoutes.getSeason1Data(req, res, app);
     });
