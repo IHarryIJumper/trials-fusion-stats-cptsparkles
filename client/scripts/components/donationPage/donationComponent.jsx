@@ -13,9 +13,6 @@ export class DonationPageComponent extends React.Component {
 			_isMounted: false
 		};
 
-		this.exitToMainPage = this.exitToMainPage.bind(this);
-		this.goBackPage = this.goBackPage.bind(this);
-
 	}
 
 	exitToMainPage() {
@@ -24,6 +21,10 @@ export class DonationPageComponent extends React.Component {
 
 	goBackPage() {
 		AppLocation.goBack();
+	}
+
+	goToContactsPage() {
+		AppLocation.goToPage('contacts');
 	}
 
 	componentWillMount() {
@@ -126,8 +127,8 @@ export class DonationPageComponent extends React.Component {
 					<div className="mdl-mini-footer__left-section">
 						<div className="mdl-logo">Andrey Menshikh</div>
 						<ul className="mdl-mini-footer__link-list">
-							<li><a href="https://github.com/IHarryIJumper">Github</a></li>
-							<li><a href="https://vk.com/iharryijumper">Contacts</a></li>
+							<li><a href="https://github.com/IHarryIJumper/trials-fusion-stats-cptsparkles">Github</a></li>
+							<li><a onClick={this.goToContactsPage}>Contacts</a></li>
 						</ul>
 					</div>
 				</footer>

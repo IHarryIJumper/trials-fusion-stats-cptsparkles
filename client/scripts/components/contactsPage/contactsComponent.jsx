@@ -142,7 +142,7 @@ export class ContactsPageComponent extends React.Component {
 					<div className="mdl-mini-footer__left-section">
 						<div className="mdl-logo">Andrey Menshikh</div>
 						<ul className="mdl-mini-footer__link-list">
-							<li><a href="https://github.com/IHarryIJumper">Github</a></li>
+							<li><a href="https://github.com/IHarryIJumper/trials-fusion-stats-cptsparkles">Github</a></li>
 							<li><a onClick={this.openDonationPage}>Donation</a></li>
 						</ul>
 					</div>

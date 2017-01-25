@@ -30,9 +30,7 @@ export class SeasonOnePageComponent extends React.Component {
 		this.parseStatisticData = this.parseStatisticData.bind(this);
 		this.pageContentRendered = this.pageContentRendered.bind(this);
 		this.setPreloaderProgress = this.setPreloaderProgress.bind(this);
-		this.exitToMainPage = this.exitToMainPage.bind(this);
 		this.renderPreloader = this.renderPreloader.bind(this);
-		this.openDonationPage = this.openDonationPage.bind(this);
 		
 
 	}
@@ -93,6 +91,14 @@ export class SeasonOnePageComponent extends React.Component {
 		AppLocation.goToPage('donation');
 	}
 
+	openContactsPage() {
+		AppLocation.goToPage('contacts');
+	}
+
+	goToSeason2() {
+		AppLocation.goToPage('season2');
+	}
+
 	renderPageContent() {
 		if (this.state.loadProgress >= 75) {
 			return (
@@ -134,9 +140,6 @@ export class SeasonOnePageComponent extends React.Component {
 						<span className="mdl-layout-title">Season 1 - Trials Evolution</span>
 						<div className="mdl-layout-spacer"></div>
 						<nav className="mdl-navigation mdl-layout--large-screen-only">
-							<a className="mdl-navigation__link" href="">Link</a>
-							<a className="mdl-navigation__link" href="">Link</a>
-							<a className="mdl-navigation__link" href="">Link</a>
 							<button className="mdl-navigation__button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onClick={this.exitToMainPage}>
 								Exit
 							</button>
@@ -146,10 +149,10 @@ export class SeasonOnePageComponent extends React.Component {
 				<div className="mdl-layout__drawer">
 					<span className="mdl-layout-title">Season 1</span>
 					<nav className="mdl-navigation">
-						<a className="mdl-navigation__link" href="">Link</a>
-						<a className="mdl-navigation__link" href="">Link</a>
-						<a className="mdl-navigation__link" href="">Link</a>
-						<a className="mdl-navigation__link" onClick={this.exitToMainPage}>Exit</a>
+						<a className="mdl-navigation__link" onClick={this.goToSeason2}>Season 2</a>
+						<a className="mdl-navigation__link" onClick={this.openContactsPage}>Contacts</a>
+						<a className="mdl-navigation__link" onClick={this.openDonationPage}>Link</a>
+						<a className="mdl-navigation__link exit" onClick={this.exitToMainPage}>Exit</a>
 					</nav>
 				</div>
 				<main className="mdl-layout__content content-scrollbar">
@@ -167,13 +170,8 @@ export class SeasonOnePageComponent extends React.Component {
 					<div className="mdl-mini-footer__left-section">
 						<div className="mdl-logo">Andrey Menshikh</div>
 						<ul className="mdl-mini-footer__link-list">
-							<li>
-								<button className="mdl-button mdl-js-button mdl-button--icon">
-									<i className="material-icons">mood</i>
-								</button>
-							</li>
-							<li><a href="https://github.com/IHarryIJumper">Github</a></li>
-							<li><a href="https://vk.com/iharryijumper">Contacts</a></li>
+							<li><a href="https://github.com/IHarryIJumper/trials-fusion-stats-cptsparkles">Github</a></li>
+							<li><a onClick={this.openContactsPage}>Contacts</a></li>
 							<li><a onClick={this.openDonationPage}>Donation</a></li>
 						</ul>
 					</div>

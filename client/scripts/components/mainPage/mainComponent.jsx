@@ -16,11 +16,7 @@ export class MainPageComponent extends React.Component {
 		this.state = {
 			_isMounted: false
 		};
-
-		this.goToSeason1 = this.goToSeason1.bind(this);
-		this.goToSeason2 = this.goToSeason2.bind(this);
-		this.openDonationPage = this.openDonationPage.bind(this);
-
+		
 	}
 
 	goToSeason1() {
@@ -33,6 +29,10 @@ export class MainPageComponent extends React.Component {
 
 	openDonationPage() {
 		AppLocation.goToPage('donation');
+	}
+
+	openContactsPage() {
+		AppLocation.goToPage('contacts');
 	}
 
 	componentWillMount() {
@@ -83,8 +83,8 @@ export class MainPageComponent extends React.Component {
 						<div className="mdl-mini-footer__left-section">
 							<div className="mdl-logo">Andrey Menshikh</div>
 							<ul className="mdl-mini-footer__link-list">
-								<li><a href="https://github.com/IHarryIJumper">Github</a></li>
-								<li><a href="https://vk.com/iharryijumper">Contacts</a></li>
+								<li><a href="https://github.com/IHarryIJumper/trials-fusion-stats-cptsparkles">Github</a></li>
+								<li><a onClick={this.openContactsPage}>Contacts</a></li>
 								<li><a onClick={this.openDonationPage}>Donation</a></li>
 							</ul>
 						</div>
