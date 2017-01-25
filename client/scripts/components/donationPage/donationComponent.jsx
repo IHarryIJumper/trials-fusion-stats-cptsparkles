@@ -5,8 +5,6 @@ import { AppLocation } from '../helpers/appLocation.js';
 
 import PayPalButtonImage from './images/donation-paypal.png';
 
-import request from 'request';
-
 export class DonationPageComponent extends React.Component {
 	constructor(props) {
 		super(props);
