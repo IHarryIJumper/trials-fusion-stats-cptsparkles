@@ -5,7 +5,7 @@ mongoose.Promise = global.Promise;
 
 // import _ from 'lodash';
 
-let seasonOneDataSchema = mongoose.Schema({
+let seasonTwoDataSchema = mongoose.Schema({
     _id: String,
     persons: Object,
     maps: Object,
@@ -15,19 +15,19 @@ let seasonOneDataSchema = mongoose.Schema({
         name: String
     }
 }, {
-    collection: 'seasonOneData'
+    collection: 'seasonTwoData'
 });
 
-seasonOneDataSchema.methods.getData = function () {
-    console.logWithTime('seasonOneDataSchema getData');
+seasonTwoDataSchema.methods.getData = function () {
+    console.logWithTime('seasonTwoDataSchema getData');
 
     return new Promise((resolve, reject) => {
-        SeasonOneDataModel.find({}).lean().exec((err, doc) => {
+        SeasonTwoDataModel.find({}).lean().exec((err, doc) => {
             if (err) {
 
                 const _error = {
-                    code: 810,
-                    message: 'Get season 1 data error'
+                    code: 812,
+                    message: 'Get season 2 data error'
                 };
 
                 console.errorWithTime(_error);
@@ -43,8 +43,8 @@ seasonOneDataSchema.methods.getData = function () {
                 }
 
                 const _error = {
-                    code: 811,
-                    message: 'Season 1 data corrupted'
+                    code: 813,
+                    message: 'Season 2 data corrupted'
                 };
 
                 resolve(_error);
@@ -55,4 +55,4 @@ seasonOneDataSchema.methods.getData = function () {
 };
 
 
-export const SeasonOneDataModel = mongoose.model('seasonOneData', seasonOneDataSchema);
+export const SeasonTwoDataModel = mongoose.model('seasonTwoData', seasonTwoDataSchema);

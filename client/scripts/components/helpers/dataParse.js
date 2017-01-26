@@ -27,6 +27,13 @@ export const DataParse = {
 			} else {
 				data = dataUnstringify;
 			}
+
+			if (data.length === 0) {
+				return {
+					code: 814,
+					message: 'Data are empty'
+				};
+			}
 		}
 
 		parsedData = DataParse.getData(data);
@@ -199,7 +206,7 @@ export const DataParse = {
 									if (easyMapsCardData.wins[personElement.name] === undefined) {
 										easyMapsCardData.wins[personElement.name] = 0;
 									}
-									
+
 
 									if (personElement.status === 1) {
 										easyMapsCardData.wins[personElement.name]++;

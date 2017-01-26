@@ -2,12 +2,13 @@ import {
 	SeasonOneDataModel
 } from './dbMethods/season1Methods.js';
 
-/*import {
-	SlideshowTestDashboardSchemaMethods
-} from './applicationMethods/slideshowTestDashboardCallMethods.js';*/
+import {
+	SeasonTwoDataModel
+} from './dbMethods/season2Methods.js';
+
 
 
 export const DatabaseMethods = {
-	seasonOne: new SeasonOneDataModel()
-	// season2: new SlideshowDashboardSchemaMethods()
+	seasonOne: new SeasonOneDataModel(),
+	seasonTwo: new SeasonTwoDataModel()
 };

@@ -38,6 +38,10 @@ var webpackConfig = {
             'webpack-hot-middleware/client',
             __dirname + '/client/scripts/season1.js'
         ],
+        season2: [
+            'webpack-hot-middleware/client',
+            __dirname + '/client/scripts/season2.js'
+        ],
         donation: [
             'webpack-hot-middleware/client',
             __dirname + '/client/scripts/donation.js'

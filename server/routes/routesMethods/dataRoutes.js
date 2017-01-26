@@ -20,7 +20,7 @@ export class DataRoutes {
 	static getSeason2Data(req, res, app) {
 		console.logWithTime('getSeason2Data');
 
-		DashboardMethods.Slideshow.prod.getEventsData().then((response) => {
+		DatabaseMethods.seasonTwo.getData().then((response) => {
 			console.logWithTime(JSON.stringify(response));
 			res.send(response);
 		});

@@ -8,7 +8,7 @@ import { DataParse } from '../helpers/dataParse.js';
 import { PageContentComponent } from './pageContent/pageContent.jsx';
 import { PreloaderComponent } from './preloader/preloader.jsx';
 
-export class SeasonOnePageComponent extends React.Component {
+export class SeasonTwoPageComponent extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -41,22 +41,8 @@ export class SeasonOnePageComponent extends React.Component {
 
 		this.setPreloaderProgress();
 
-		/*request
-			.get(AppLocation.getRequestUrl('season1data'), function (error, response, body) {
-				if (!error && response.statusCode === 200) {
-					if (body.code !== undefined) {
-						const data = { message: JSON.stringify(body) };
-						_this.snackbarContainer.MaterialSnackbar.showSnackbar(data);
-						console.log(body) // Show the HTML for the Google homepage.
-					} else {
-						_this.parseStatisticData(body);
-						_this.setPreloaderProgress();
-					}
-				}
-			});*/
-
 		request
-			.get(AppLocation.getRequestUrl('season1data'), (body) => {
+			.get(AppLocation.getRequestUrl('season2data'), (body) => {
 
 				if (body.code !== undefined) {
 					const data = { message: JSON.stringify(body) };
@@ -74,13 +60,28 @@ export class SeasonOnePageComponent extends React.Component {
 
 	parseStatisticData(data) {
 		this.cardsStatisticData = DataParse.cardsData(data);
-		// const snackData = { message: JSON.stringify(this.cardsStatisticData) };
-		const snackData = { message: 'Statistical dashboard rendered!' };
+
+		let snackData;
+
+		if (this.cardsStatisticData.code !== undefined) {
+			snackData = { message: JSON.stringify(this.cardsStatisticData) };
+		} else {
+			// const snackData = { message: JSON.stringify(this.cardsStatisticData) };
+			snackData = { message: 'Statistical dashboard rendered!' };
+			this.setPreloaderProgress();
+		}
+
 		if (this.snackbarContainer.MaterialSnackbar === undefined) {
 			this.snackbarContainer = document.querySelector('#toast-notification');
 		}
-		this.snackbarContainer.MaterialSnackbar.showSnackbar(snackData);
-		this.setPreloaderProgress();
+
+		setTimeout(() => {
+			if (this.snackbarContainer.MaterialSnackbar !== undefined) {
+				this.snackbarContainer.MaterialSnackbar.showSnackbar(snackData);
+			}
+		}, 200);
+
+
 	}
 
 	pageContentRendered(rendered) {
@@ -115,8 +116,8 @@ export class SeasonOnePageComponent extends React.Component {
 		AppLocation.goToPage('contacts');
 	}
 
-	goToSeason2() {
-		AppLocation.goToPage('season2');
+	goToSeason1() {
+		AppLocation.goToPage('season1');
 	}
 
 	renderPageContent() {
@@ -157,7 +158,7 @@ export class SeasonOnePageComponent extends React.Component {
 			<div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 				<header className="mdl-layout__header">
 					<div className="mdl-layout__header-row">
-						<span className="mdl-layout-title">Season 1 - Trials Evolution</span>
+						<span className="mdl-layout-title">Season 2 - Trials Fusion</span>
 						<div className="mdl-layout-spacer"></div>
 						<nav className="mdl-navigation mdl-layout--large-screen-only">
 							<button className="mdl-navigation__button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onClick={this.exitToMainPage}>
@@ -167,9 +168,9 @@ export class SeasonOnePageComponent extends React.Component {
 					</div>
 				</header>
 				<div className="mdl-layout__drawer">
-					<span className="mdl-layout-title">Season 1</span>
+					<span className="mdl-layout-title">Season 2</span>
 					<nav className="mdl-navigation">
-						<a className="mdl-navigation__link" onClick={this.goToSeason2}>Season 2</a>
+						<a className="mdl-navigation__link" onClick={this.goToSeason1}>Season 1</a>
 						<a className="mdl-navigation__link" onClick={this.openContactsPage}>Contacts</a>
 						<a className="mdl-navigation__link" onClick={this.openDonationPage}>Donation</a>
 						<a className="mdl-navigation__link exit" onClick={this.exitToMainPage}>Exit</a>
