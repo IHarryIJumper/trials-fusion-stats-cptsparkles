@@ -3,7 +3,9 @@
 import './helpers/consoleLogHelper.js'
 
 import express from 'express';
-import { routes } from './routes/routes.js';
+import {
+	routes
+} from './routes/routes.js';
 import bodyParser from 'body-parser';
 
 import {
@@ -13,17 +15,20 @@ import mongoose from 'mongoose';
 
 const app = express();
 
+let webpackCompiler;
 
-if(process.env.NODE_ENV !== 'production'){
-    const webpack = require('webpack');
-    const config =  require('../webpack.config');
-    const compiler = webpack(config);
+if (process.env.NODE_ENV !== 'production') {
+	const webpack = require('webpack');
+	const config = require('../webpack.config');
+	const compiler = webpack(config);
 
-    app.use(require('webpack-dev-middleware')(compiler, {
-        publicPath: config.output.publicPath
-    }));
+	app.use(require('webpack-dev-middleware')(compiler, {
+		publicPath: config.output.publicPath
+	}));
 
-    app.use(require('webpack-hot-middleware')(compiler));
+	app.use(require('webpack-hot-middleware')(compiler));
+
+	webpackCompiler = compiler;
 }
 
 /**
@@ -45,7 +50,13 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
-routes(app);
+if (process.env.NODE_ENV !== 'production') {
+	routes(app, webpackCompiler);
+} else {
+	routes(app);
+}
+
+
 
 app.listen(process.env.PORT || 7777);
 

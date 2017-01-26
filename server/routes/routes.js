@@ -11,26 +11,26 @@ import {
 
 
 
-export const routes = (app) => {
+export const routes = (app, compiler) => {
 
-    app.get('/', (req, res) => {
-        RoutesMethods.PagesRoutes.mainPage(req, res, app);
+    app.get('/', (req, res, next) => {
+        RoutesMethods.PagesRoutes.mainPage(req, res, app, next, compiler);
     });
 
-    app.get('/season1', (req, res) => {
-        RoutesMethods.PagesRoutes.season1Page(req, res, app);
+    app.get('/season1', (req, res, next) => {
+        RoutesMethods.PagesRoutes.season1Page(req, res, app, next, compiler);
     });
 
-    app.get('/season2', (req, res) => {
-        RoutesMethods.PagesRoutes.season2Page(req, res, app);
+    app.get('/season2', (req, res, next) => {
+        RoutesMethods.PagesRoutes.season2Page(req, res, app, next, compiler);
     });
 
-    app.get('/donation', (req, res) => {
-        RoutesMethods.PagesRoutes.donationPage(req, res, app);
+    app.get('/donation', (req, res, next) => {
+        RoutesMethods.PagesRoutes.donationPage(req, res, app, next, compiler);
     });
 
-    app.get('/contacts', (req, res) => {
-        RoutesMethods.PagesRoutes.contactsPage(req, res, app);
+    app.get('/contacts', (req, res, next) => {
+        RoutesMethods.PagesRoutes.contactsPage(req, res, app, next, compiler);
     });
 
     app.get('/season1data', (req, res) => {
@@ -41,11 +41,11 @@ export const routes = (app) => {
         RoutesMethods.DataRoutes.getSeason2Data(req, res, app);
     });
 
-    /*app.use('*', (req, res) => {
+    app.use('*', (req, res) => {
         res.writeHead(303, {
             'Location': '/'
         });
         res.end();
-    });*/
+    });
 
 }
