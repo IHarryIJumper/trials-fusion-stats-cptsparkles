@@ -1,6 +1,10 @@
 import express from 'express';
 import path from 'path';
 
+import {
+	DatabaseMethods
+} from '../../dbMethods.js';
+
 import DevSendFile from './helpers/devSendfile.js';
 
 export class PagesRoutes {
@@ -11,13 +15,13 @@ export class PagesRoutes {
 		// app.use(express.static(__dirname + '/../../../public'));
 		// res.sendFile('main.html', { root: __dirname + '/../../../client/view/'});
 
-
 		if (process.env.NODE_ENV !== 'production') {
 			DevSendFile(res, next, compiler, 'view/main.html');
 		} else {
-			app.use(express.static(__dirname + '/../../../dist'));
+			DatabaseMethods.MainPageViews.setView();
+			app.use(express.static(__dirname + '/../../../public'));
 			res.sendFile('main.html', {
-				root: __dirname + '/../../../dist/view/'
+				root: __dirname + '/../../../public/view'
 			});
 		}
 
@@ -29,10 +33,10 @@ export class PagesRoutes {
 		if (process.env.NODE_ENV !== 'production') {
 			DevSendFile(res, next, compiler, 'view/season1.html');
 		} else {
-			app.use(express.static(__dirname + '/../../../dist'));
-			// app.use(express.static(__dirname + '/../../../public'));
+			DatabaseMethods.SeasonOnePageViews.setView();
+			app.use(express.static(__dirname + '/../../../public'));
 			res.sendFile('season1.html', {
-				root: __dirname + '/../../../client/view/'
+				root: __dirname + '/../../../public/view'
 			});
 		}
 	}
@@ -43,10 +47,10 @@ export class PagesRoutes {
 		if (process.env.NODE_ENV !== 'production') {
 			DevSendFile(res, next, compiler, 'view/season2.html');
 		} else {
-			app.use(express.static(__dirname + '/../../../dist'));
-			// app.use(express.static(__dirname + '/../../../public'));
+			DatabaseMethods.SeasonTwoPageViews.setView();
+			app.use(express.static(__dirname + '/../../../public'));
 			res.sendFile('season2.html', {
-				root: __dirname + '/../../../client/view/'
+				root: __dirname + '/../../../public/view'
 			});
 		}
 	}
@@ -58,11 +62,10 @@ export class PagesRoutes {
 		if (process.env.NODE_ENV !== 'production') {
 			DevSendFile(res, next, compiler, 'view/donate.html');
 		} else {
-
-			app.use(express.static(__dirname + '/../../../dist'));
-			// app.use(express.static(__dirname + '/../../../public'));
+			DatabaseMethods.DonationPageViews.setView();
+			app.use(express.static(__dirname + '/../../../public'));
 			res.sendFile('donate.html', {
-				root: __dirname + '/../../../client/view/'
+				root: __dirname + '/../../../public/view'
 			});
 		}
 	}
@@ -74,10 +77,10 @@ export class PagesRoutes {
 		if (process.env.NODE_ENV !== 'production') {
 			DevSendFile(res, next, compiler, 'view/contacts.html');
 		} else {
-			app.use(express.static(__dirname + '/../../../dist'));
-			// app.use(express.static(__dirname + '/../../../public'));
+			DatabaseMethods.ContactsPageViews.setView();
+			app.use(express.static(__dirname + '/../../../public'));
 			res.sendFile('contacts.html', {
-				root: __dirname + '/../../../client/view/'
+				root: __dirname + '/../../../public/view'
 			});
 		}
 	}
