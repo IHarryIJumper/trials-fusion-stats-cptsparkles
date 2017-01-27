@@ -15,7 +15,8 @@ import mongoose from 'mongoose';
 
 const app = express();
 
-let webpackCompiler;
+let webpackCompiler,
+applicationPort = 80;
 
 if (process.env.NODE_ENV !== 'production') {
 	const webpack = require('webpack');
@@ -29,6 +30,7 @@ if (process.env.NODE_ENV !== 'production') {
 	app.use(require('webpack-hot-middleware')(compiler));
 
 	webpackCompiler = compiler;
+	applicationPort = 7777;
 }
 
 app.use(bodyParser.json());
@@ -42,6 +44,6 @@ if (process.env.NODE_ENV !== 'production') {
 	routes(app);
 }
 
-app.listen(process.env.PORT || 7777);
+app.listen(process.env.PORT || applicationPort);
 
-console.logWithTime(`Listening on http://localhost:${process.env.PORT || 7777}`);
+console.logWithTime(`Listening on http://localhost:${process.env.PORT || applicationPort}`);
