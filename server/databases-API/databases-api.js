@@ -1,5 +1,5 @@
 
 export const databaseURL = {
     debug: 'localhost',
-    production: 'localhost'
+    production: 'mongodb://localhost/trialsStats'
 };
