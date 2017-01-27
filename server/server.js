@@ -16,7 +16,7 @@ import mongoose from 'mongoose';
 const app = express();
 
 let webpackCompiler,
-applicationPort = 80;
+applicationPort = 8080;
 
 if (process.env.NODE_ENV !== 'production') {
 	const webpack = require('webpack');
