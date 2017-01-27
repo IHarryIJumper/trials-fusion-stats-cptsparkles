@@ -196,8 +196,8 @@ export class PageContentComponent extends React.Component {
 					disableImagesLoaded={false}
 					updateOnEachImageLoad={false}
 					onLayoutComplete={(laidOutItems) => {
-						console.log('Masonry!');
-						console.log(laidOutItems);
+						// console.log('Masonry!');
+						// console.log(laidOutItems);
 					}}>
 
 					{this.renderMainCard()}
