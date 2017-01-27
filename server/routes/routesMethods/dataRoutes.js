@@ -9,7 +9,7 @@ export class DataRoutes {
 		console.logWithTime('getSeason1Data');
 
 		DatabaseMethods.seasonOne.getData().then((response) => {
-			console.logWithTime(JSON.stringify(response));
+			// console.logWithTime(JSON.stringify(response));
 			setTimeout(() => {
 				res.send(response);
 			}, 500);
@@ -21,7 +21,7 @@ export class DataRoutes {
 		console.logWithTime('getSeason2Data');
 
 		DatabaseMethods.seasonTwo.getData().then((response) => {
-			console.logWithTime(JSON.stringify(response));
+			// console.logWithTime(JSON.stringify(response));
 			res.send(response);
 		});
 

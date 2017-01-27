@@ -8,14 +8,14 @@ var getPlugins = function () {
     var plugins = [];
     var hotReload = new webpack.HotModuleReplacementPlugin()
     var noErrorsPlugin = new webpack.NoErrorsPlugin();
-    var clearDist = new CleanWebpackPlugin(['dist'], {
+    var clearDist = new CleanWebpackPlugin(['public', 'dist', 'serverDist'], {
         root: __dirname,
         verbose: true,
         dry: false
     });
     var faviconLib = new FaviconsWebpackPlugin({
         // Your source logo
-        logo: './public/trials-favicon-small-min.png',
+        logo: './images/trials-favicon-small-min.png',
         // The prefix for all image files (might be a folder or a name)
         prefix: 'icons-[hash]/',
         // Emit all stats of the generated icons

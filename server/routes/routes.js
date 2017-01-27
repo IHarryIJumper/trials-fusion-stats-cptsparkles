@@ -41,11 +41,12 @@ export const routes = (app, compiler) => {
         RoutesMethods.DataRoutes.getSeason2Data(req, res, app);
     });
 
-    app.use('*', (req, res) => {
+    /*app.use((req, res) => {
         res.writeHead(303, {
             'Location': '/'
         });
         res.end();
-    });
+        // res.send(404);
+    });*/
 
 }
