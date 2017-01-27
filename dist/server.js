@@ -23,7 +23,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var app = (0, _express2.default)();
 
 var webpackCompiler = void 0,
-    applicationPort = 80;
+    applicationPort = 8080;
 
 if (process.env.NODE_ENV !== 'production') {
 	var webpack = require('webpack');
