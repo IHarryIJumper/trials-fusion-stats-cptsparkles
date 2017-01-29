@@ -6,7 +6,7 @@ module.exports = {
   apps: [{
     name: "Trials Statistic Dashboard",
     script: "./dist/server.js",
-    watch: true,
+    watch: ['public', 'dist'],
     env: {
       NODE_ENV: "production"
     },
