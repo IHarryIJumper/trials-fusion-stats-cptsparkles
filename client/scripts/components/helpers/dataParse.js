@@ -71,7 +71,9 @@ export const DataParse = {
 			};
 
 			_.each(episode.final, (finalElement, finalElementIndex) => {
-				mainCardData.wins[finalElement.name] = 0;
+				if (mainCardData.wins[finalElement.name] === undefined) {
+					mainCardData.wins[finalElement.name] = 0;
+				}
 				if (episodeWinner.score < finalElement.score) {
 					episodeWinner.score = finalElement.score;
 					episodeWinner.personId = finalElement.personId;
@@ -125,7 +127,9 @@ export const DataParse = {
 			};
 
 			_.each(episode.final, (finalElement, finalElementIndex) => {
-				lastTenCardData.wins[finalElement.name] = 0;
+				if (lastTenCardData.wins[finalElement.name] === undefined) {
+					lastTenCardData.wins[finalElement.name] = 0;
+				}
 				if (episodeWinner.score < finalElement.score) {
 					episodeWinner.score = finalElement.score;
 					episodeWinner.personId = finalElement.personId;
