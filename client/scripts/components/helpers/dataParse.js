@@ -1208,6 +1208,7 @@ export const DataParse = {
 	},
 
 	donkeyData: (easyMapsData, mediumMapsData, hardMapsData, extremeMapsData) => {
+		// debugger;
 		let donkeyCardData = {
 				donkey: {},
 				winner: '',
@@ -1235,7 +1236,7 @@ export const DataParse = {
 		}
 		if (mediumMapsData !== undefined) {
 			if (mediumMapsData) {
-				_.each(Object.keys(mediumMapsData.faults), (donkeyElement, donkeyElementIndex) => {
+				_.each(Object.keys(mediumMapsData.donkey), (donkeyElement, donkeyElementIndex) => {
 					if (donkeyCardData.donkey[donkeyElement] === undefined) {
 						donkeyCardData.donkey[donkeyElement] = 0;
 					}
@@ -1250,7 +1251,7 @@ export const DataParse = {
 		}
 		if (hardMapsData !== undefined) {
 			if (hardMapsData) {
-				_.each(Object.keys(hardMapsData.faults), (donkeyElement, donkeyElementIndex) => {
+				_.each(Object.keys(hardMapsData.donkey), (donkeyElement, donkeyElementIndex) => {
 					if (donkeyCardData.donkey[donkeyElement] === undefined) {
 						donkeyCardData.donkey[donkeyElement] = 0;
 					}
@@ -1265,7 +1266,7 @@ export const DataParse = {
 		}
 		if (extremeMapsData !== undefined) {
 			if (extremeMapsData) {
-				_.each(Object.keys(extremeMapsData.faults), (donkeyElement, donkeyElementIndex) => {
+				_.each(Object.keys(extremeMapsData.donkey), (donkeyElement, donkeyElementIndex) => {
 					if (donkeyCardData.donkey[donkeyElement] === undefined) {
 						donkeyCardData.donkey[donkeyElement] = 0;
 					}
