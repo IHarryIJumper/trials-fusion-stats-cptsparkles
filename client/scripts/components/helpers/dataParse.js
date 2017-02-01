@@ -1343,7 +1343,7 @@ export const DataParse = {
 		}
 		if (mediumMapsData !== undefined) {
 			if (mediumMapsData) {
-				_.each(Object.keys(mediumMapsData.faults), (pandaElement, pandaElementIndex) => {
+				_.each(Object.keys(mediumMapsData.panda), (pandaElement, pandaElementIndex) => {
 					if (pandaCardData.panda[pandaElement] === undefined) {
 						pandaCardData.panda[pandaElement] = 0;
 					}
@@ -1358,7 +1358,7 @@ export const DataParse = {
 		}
 		if (hardMapsData !== undefined) {
 			if (hardMapsData) {
-				_.each(Object.keys(hardMapsData.faults), (pandaElement, pandaElementIndex) => {
+				_.each(Object.keys(hardMapsData.panda), (pandaElement, pandaElementIndex) => {
 					if (pandaCardData.panda[pandaElement] === undefined) {
 						pandaCardData.panda[pandaElement] = 0;
 					}
@@ -1373,7 +1373,7 @@ export const DataParse = {
 		}
 		if (extremeMapsData !== undefined) {
 			if (extremeMapsData) {
-				_.each(Object.keys(extremeMapsData.faults), (pandaElement, pandaElementIndex) => {
+				_.each(Object.keys(extremeMapsData.panda), (pandaElement, pandaElementIndex) => {
 					if (pandaCardData.panda[pandaElement] === undefined) {
 						pandaCardData.panda[pandaElement] = 0;
 					}
