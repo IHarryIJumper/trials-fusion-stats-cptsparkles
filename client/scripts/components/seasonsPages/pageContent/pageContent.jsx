@@ -214,16 +214,16 @@ export class PageContentComponent extends React.Component {
 
 					{this.renderMainCard()}
 					{this.renderLastEpisodeCard()}
+					{this.renderScoreChartCard()}
 					{this.renderLastTenCard()}
 					{this.renderEasyMapsCard()}
 					{this.renderMediumMapsCard()}
 					{this.renderHardMapsCard()}
-					{this.renderScoreChartCard()}
 					{this.renderFaultsCard()}
 					{this.renderDNFsCard()}
-					{this.renderMapsCard()}
 					{this.renderDonkeyCard()}
 					{this.renderPandaCard()}
+					{this.renderMapsCard()}
 
 				</Masonry>
 

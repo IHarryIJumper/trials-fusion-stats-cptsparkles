@@ -46,7 +46,7 @@ export class ScoreChartCardComponent extends React.Component {
 		return (
 			<div className="demo-card-wide mdl-card mdl-shadow--2dp statistic-card chart-card score-chart">
 				<div className="mdl-card__title">
-					<h2 className="mdl-card__title-text">Score Season Chart</h2>
+					<h2 className="mdl-card__title-text">Season Score Chart</h2>
 				</div>
 				<div className="mdl-card__supporting-text">
 					<canvas id="chart-canvas" width="660" height="400"></canvas>
