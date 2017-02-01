@@ -49,6 +49,7 @@ export const DataParse = {
 		parsedData.easyMaps = DataParse.easyMapsData(data);
 		parsedData.mediumMaps = DataParse.mediumMapsData(data);
 		parsedData.hardMaps = DataParse.hardMapsData(data);
+		parsedData.extremeMaps = DataParse.extremeMapsData(data);
 		parsedData.lastEpisodeData = DataParse.lastEpisodeData(data);
 		parsedData.scoreLineChartData = DataParse.scoreLineChartData(data);
 		parsedData.faultsData = DataParse.faultsData(parsedData.easyMaps, parsedData.mediumMaps, parsedData.hardMaps);
@@ -672,6 +673,178 @@ export const DataParse = {
 		}
 
 		return hardMapsCardData;
+
+	},
+
+	extremeMapsData: (seasonData) => {
+		let extremeMapsCardData = {
+				wins: {},
+				episodes: {},
+				faults: {},
+				maps: 0,
+				mapsDropped: 0,
+				dnfsCounter: {},
+				dnfs: '',
+				dnfsPerEpisode: '',
+				winner: '',
+				winnerPerEpisode: '',
+				mapsPlayed: {},
+				donkey: {},
+				panda: {}
+			},
+			_dnfs = {},
+			_mapsPlayed = {},
+			_foundMaps = false;
+
+		_.each(seasonData, (episode, episodeIndex) => {
+
+			_.each(episode.persons, (personElement, personElementIndex) => {
+
+				if (extremeMapsCardData.episodes[personElement.name] === undefined) {
+					extremeMapsCardData.episodes[personElement.name] = 0
+				}
+
+				extremeMapsCardData.episodes[personElement.name]++;
+
+			});
+
+			if (episode.maps.extreme !== undefined) {
+				if (episode.maps.extreme.length !== 0) {
+
+					_foundMaps = true;
+
+					extremeMapsCardData.maps += episode.maps.extreme.length;
+
+					_.each(episode.maps.extreme, (mapElement, mapElementIndex) => {
+
+						if (mapElement === 'dropped') {
+							extremeMapsCardData.mapsDropped++;
+						} else {
+
+							if (mapElement.length !== 0) {
+								_.each(mapElement, (personElement, personElementIndex) => {
+
+									if (extremeMapsCardData.wins[personElement.name] === undefined) {
+										extremeMapsCardData.wins[personElement.name] = 0
+									}
+
+									if (personElement.status === 1) {
+										extremeMapsCardData.wins[personElement.name]++;
+									}
+
+									if (_dnfs[personElement.name] === undefined) {
+										_dnfs[personElement.name] = 0
+									}
+
+									if (personElement.status === 0) {
+										_dnfs[personElement.name]++;
+									}
+
+									if (extremeMapsCardData.faults[personElement.name] === undefined) {
+										extremeMapsCardData.faults[personElement.name] = 0;
+									}
+
+									extremeMapsCardData.faults[personElement.name] += personElement.faults;
+
+									if (_mapsPlayed[personElement.name] === undefined) {
+										_mapsPlayed[personElement.name] = 0
+									}
+
+									_mapsPlayed[personElement.name]++;
+
+									if (personElement.donkey !== undefined) {
+										if (extremeMapsCardData.donkey[personElement.name] === undefined) {
+											extremeMapsCardData.donkey[personElement.name] = 0;
+										}
+
+										if (personElement.donkey && (personElement.status === 1)) {
+											extremeMapsCardData.donkey[personElement.name]++;
+										}
+									}
+
+									if (personElement.panda !== undefined) {
+										if (extremeMapsCardData.panda[personElement.name] === undefined) {
+											extremeMapsCardData.panda[personElement.name] = 0;
+										}
+
+										if (personElement.panda && (personElement.status === 1)) {
+											extremeMapsCardData.panda[personElement.name]++;
+										}
+									}
+
+								});
+							}
+
+						}
+
+					});
+				}
+			}
+
+		});
+
+		let winnerData = {
+			name: '',
+			wins: -1
+		};
+
+		let winnerDataPerEpisode = {
+			name: '',
+			wins: -1
+		};
+
+		_.each(Object.keys(extremeMapsCardData.wins), (winner, winnerIndex) => {
+			if (extremeMapsCardData.wins[winner] > winnerData.wins) {
+				winnerData.name = winner;
+				winnerData.wins = extremeMapsCardData.wins[winner];
+			}
+
+			let winnerPerEpisodeRate = extremeMapsCardData.wins[winner] / _mapsPlayed[winner];
+
+			if (winnerPerEpisodeRate > winnerDataPerEpisode.wins) {
+				winnerDataPerEpisode.name = winner;
+				winnerDataPerEpisode.wins = winnerPerEpisodeRate;
+			}
+		})
+
+		extremeMapsCardData.winner = winnerData.name;
+		extremeMapsCardData.winnerPerEpisode = winnerDataPerEpisode.name;
+
+		let dnfsData = {
+			name: '',
+			dnfs: -1
+		};
+
+		let dnfsDataPerEpisode = {
+			name: '',
+			dnfs: -1
+		};
+
+		_.each(Object.keys(_dnfs), (dnfElement, dnfElementIndex) => {
+			if (_dnfs[dnfElement] > dnfsData.dnfs) {
+				dnfsData.name = dnfElement;
+				dnfsData.dnfs = _dnfs[dnfElement];
+			}
+
+			let dnfsPerEpisodeRate = _dnfs[dnfElement] / _mapsPlayed[dnfElement];
+
+			if (dnfsPerEpisodeRate > dnfsDataPerEpisode.dnfs) {
+				dnfsDataPerEpisode.name = dnfElement;
+				dnfsDataPerEpisode.dnfs = dnfsPerEpisodeRate;
+			}
+		})
+
+		extremeMapsCardData.dnfs = dnfsData.name;
+		extremeMapsCardData.dnfsPerEpisode = dnfsDataPerEpisode.name
+
+		extremeMapsCardData.mapsPlayed = _mapsPlayed;
+		extremeMapsCardData.dnfsCounter = _dnfs;
+
+		if (!_foundMaps) {
+			return false;
+		}
+
+		return extremeMapsCardData;
 
 	},
 

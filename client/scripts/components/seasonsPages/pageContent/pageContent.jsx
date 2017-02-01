@@ -8,6 +8,7 @@ import { LastTenCardComponent } from './statistic-cards/lastTen.jsx';
 import { EasyMapsCardComponent } from './statistic-cards/easyMaps.jsx';
 import { MediumMapsCardComponent } from './statistic-cards/mediumMaps.jsx';
 import { HardMapsCardComponent } from './statistic-cards/hardMaps.jsx';
+import { ExtremeMapsCardComponent } from './statistic-cards/extremeMaps.jsx';
 import { ScoreChartCardComponent } from './statistic-cards/scoreChart.jsx';
 import { FaultsCardComponent } from './statistic-cards/faultsCard.jsx';
 import { DNFsCardComponent } from './statistic-cards/dnfsCard.jsx';
@@ -31,6 +32,7 @@ export class PageContentComponent extends React.Component {
 		this.renderEasyMapsCard = this.renderEasyMapsCard.bind(this);
 		this.renderMediumMapsCard = this.renderMediumMapsCard.bind(this);
 		this.renderHardMapsCard = this.renderHardMapsCard.bind(this);
+		this.renderExtremeMapsCard = this.renderExtremeMapsCard.bind(this);
 		this.renderScoreChartCard = this.renderScoreChartCard.bind(this);
 		this.renderFaultsCard = this.renderFaultsCard.bind(this);
 		this.renderDNFsCard = this.renderDNFsCard.bind(this);
@@ -93,6 +95,16 @@ export class PageContentComponent extends React.Component {
 			if (this.props.data.hardMaps) {
 				return (
 					<HardMapsCardComponent data={this.props.data.hardMaps} />
+				);
+			}
+		}
+	}
+
+	renderExtremeMapsCard() {
+		if (this.props.data.extremeMaps !== undefined) {
+			if (this.props.data.extremeMaps) {
+				return (
+					<ExtremeMapsCardComponent data={this.props.data.extremeMaps} />
 				);
 			}
 		}
