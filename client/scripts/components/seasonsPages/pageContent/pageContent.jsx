@@ -103,9 +103,11 @@ export class PageContentComponent extends React.Component {
 	renderExtremeMapsCard() {
 		if (this.props.data.extremeMaps !== undefined) {
 			if (this.props.data.extremeMaps) {
-				return (
-					<ExtremeMapsCardComponent data={this.props.data.extremeMaps} />
-				);
+				if (this.props.data.extremeMaps.winner !== '') {
+					return (
+						<ExtremeMapsCardComponent data={this.props.data.extremeMaps} />
+					);
+				}
 			}
 		}
 	}
@@ -210,7 +212,7 @@ export class PageContentComponent extends React.Component {
 					onLayoutComplete={(laidOutItems) => {
 						// console.log('Masonry!');
 						// console.log(laidOutItems);
-					}}>
+					} }>
 
 					{this.renderMainCard()}
 					{this.renderLastEpisodeCard()}
@@ -219,6 +221,7 @@ export class PageContentComponent extends React.Component {
 					{this.renderEasyMapsCard()}
 					{this.renderMediumMapsCard()}
 					{this.renderHardMapsCard()}
+					{this.renderExtremeMapsCard()}
 					{this.renderFaultsCard()}
 					{this.renderDNFsCard()}
 					{this.renderDonkeyCard()}

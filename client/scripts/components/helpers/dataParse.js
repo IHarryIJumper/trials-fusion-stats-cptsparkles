@@ -843,6 +843,7 @@ export const DataParse = {
 		if (!_foundMaps) {
 			return false;
 		}
+		
 
 		return extremeMapsCardData;
 
