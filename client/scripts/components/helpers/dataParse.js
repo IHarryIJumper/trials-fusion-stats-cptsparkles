@@ -52,11 +52,11 @@ export const DataParse = {
 		parsedData.extremeMaps = DataParse.extremeMapsData(data);
 		parsedData.lastEpisodeData = DataParse.lastEpisodeData(data);
 		parsedData.scoreLineChartData = DataParse.scoreLineChartData(data);
-		parsedData.faultsData = DataParse.faultsData(parsedData.easyMaps, parsedData.mediumMaps, parsedData.hardMaps);
-		parsedData.dnfsData = DataParse.dnfsData(parsedData.easyMaps, parsedData.mediumMaps, parsedData.hardMaps);
-		parsedData.mapsData = DataParse.mapsData(parsedData.easyMaps, parsedData.mediumMaps, parsedData.hardMaps);
-		parsedData.donkeyData = DataParse.donkeyData(parsedData.easyMaps, parsedData.mediumMaps, parsedData.hardMaps);
-		parsedData.pandaData = DataParse.pandaData(parsedData.easyMaps, parsedData.mediumMaps, parsedData.hardMaps);
+		parsedData.faultsData = DataParse.faultsData(parsedData.easyMaps, parsedData.mediumMaps, parsedData.hardMaps, parsedData.extremeMaps);
+		parsedData.dnfsData = DataParse.dnfsData(parsedData.easyMaps, parsedData.mediumMaps, parsedData.hardMaps, parsedData.extremeMaps);
+		parsedData.mapsData = DataParse.mapsData(parsedData.easyMaps, parsedData.mediumMaps, parsedData.hardMaps, parsedData.extremeMaps);
+		parsedData.donkeyData = DataParse.donkeyData(parsedData.easyMaps, parsedData.mediumMaps, parsedData.hardMaps, parsedData.extremeMaps);
+		parsedData.pandaData = DataParse.pandaData(parsedData.easyMaps, parsedData.mediumMaps, parsedData.hardMaps, parsedData.extremeMaps);
 
 		return parsedData;
 	},
